@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>R5T.Magyar.T002</name>
+    </assembly>
+    <members>
+        <member name="T:R5T.Magyar.T002.ExceptionGenerator">
+            <summary>
+            Empty implementation as base for extension methods.
+            </summary>
+        </member>
+        <member name="T:R5T.Magyar.T002.ExceptionMessage">
+            <summary>
+            Empty implementation as base for extension methods.
+            </summary>
+        </member>
+        <member name="T:R5T.Magyar.T002.ExceptionMessageGenerator">
+            <summary>
+            Empty implementation as base for extension methods.
+            </summary>
+        </member>
+        <member name="T:R5T.Magyar.T002.IExceptionGenerator">
+            <summary>
+            Empty interface as base for extension methods.
+            </summary>
+        </member>
+        <member name="T:R5T.Magyar.T002.IExceptionMessage">
+            <summary>
+            Empty interface as base for extension methods.
+            </summary>
+        </member>
+        <member name="T:R5T.Magyar.T002.IExceptionMessageGenerator">
+            <summary>
+            Empty interface as base for extension methods.
+            </summary>
+        </member>
+        <member name="T:R5T.Magyar.T002.Documentation">
+            <summary>
+            <see cref="T:R5T.Magyar.T002.IExceptionMessageGenerator"/> and <see cref="T:R5T.Magyar.T002.IExceptionGenerator"/> extension method base types.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>R5T.T0042.X001</name>
+    </assembly>
+    <members>
+        <member name="T:R5T.T0042.X001.Documentation">
+            <summary>
+            IStringOperator basic extensions.
+            </summary>
+        </member>
+    </members>
+</doc>

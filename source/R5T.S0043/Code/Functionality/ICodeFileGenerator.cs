@@ -9,6 +9,32 @@ namespace R5T.S0043
 	[FunctionalityMarker]
 	public partial interface ICodeFileGenerator : IFunctionalityMarker
 	{
+		public void CreateDocumentationFile(
+			 string filePath,
+			 string namespaceName,
+			 string description)
+        {
+			var text =
+$@"
+using System;
+
+
+namespace {namespaceName}
+{{
+	/// <summary>
+	/// {description}
+	/// </summary>
+	public static class Documentation
+	{{
+	}}
+}}
+";
+
+			Instances.TextFileGenerator.WriteText(
+				filePath,
+				text);
+		}
+
 		public void CreateInstancesFile(
 			string filePath,
 			string namespaceName)
@@ -27,7 +53,7 @@ namespace {namespaceName}
 }}
 ";
 
-			this.WriteText(
+			Instances.TextFileGenerator.WriteText(
 				filePath,
 				text);
 		}
@@ -52,20 +78,9 @@ namespace {namespaceName}
     }}
 }}
 ";
-			this.WriteText(
+			Instances.TextFileGenerator.WriteText(
 				filePath,
 				text);
-		}
-
-		public void WriteText(
-			string filePath,
-			string text)
-		{
-			var outputText = text.Trim();
-
-			File.WriteAllText(
-				filePath,
-				outputText);
 		}
 	}
 }

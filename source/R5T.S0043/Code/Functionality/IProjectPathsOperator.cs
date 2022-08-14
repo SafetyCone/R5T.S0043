@@ -13,15 +13,32 @@ namespace R5T.S0043
         {
 			var projectDirectoryPath = this.GetProjectDirectoryPath(projectFilePath);
 
-			var codeDirectoryPath = projectDirectoryPath + "Code\\";
+			var codeDirectoryPath = Instances.PathOperator.GetDirectoryPath(
+				projectDirectoryPath,
+				Instances.DirectoryNames.Code);
+
 			return codeDirectoryPath;
         }
+
+		public string GetDocumentationFilePath(string projectFilePath)
+        {
+			var codeDirectoryPath = this.GetCodeDirectoryPath(projectFilePath);
+
+			var documentationFilePath = Instances.PathOperator.GetFilePath(
+				codeDirectoryPath,
+				Instances.FileNames.Documentation);
+
+			return documentationFilePath;
+		}
 
 		public string GetInstancesFilePath(string projectFilePath)
 		{
 			var codeDirectoryPath = this.GetCodeDirectoryPath(projectFilePath);
 
-			var instancesFilePath = codeDirectoryPath + "Instances.cs";
+			var instancesFilePath = Instances.PathOperator.GetFilePath(
+				codeDirectoryPath,
+				Instances.FileNames.Instances);
+
 			return instancesFilePath;
 		}
 
@@ -29,13 +46,13 @@ namespace R5T.S0043
 		{
 			var codeDirectoryPath = this.GetCodeDirectoryPath(projectFilePath);
 
-			var instancesFilePath = codeDirectoryPath + "Program.cs";
+			var instancesFilePath = Instances.PathOperator.GetFilePath(codeDirectoryPath, Instances.FileNames.Program);
 			return instancesFilePath;
 		}
 
 		public string GetProjectDirectoryPath(string projectFilePath)
         {
-			var projectDirectoryPath = String.Join('\\', projectFilePath.Split('\\').SkipLast(1)) + '\\';
+			var projectDirectoryPath = Instances.PathOperator.GetParentDirectoryPath_ForFile(projectFilePath);
 			return projectDirectoryPath;
 		}
 
@@ -49,8 +66,19 @@ namespace R5T.S0043
         {
 			var projectFileName = this.GetProjectFileName(projectFilePath);
 
-			var projectName = String.Join('.', projectFileName.Split('.').SkipLast(1));
+			var projectName = Instances.FileNameOperator_Base.GetFileNameStem(projectFileName);
 			return projectName;
 		}
+
+		public string GetProjectPlanFilePath(string projectFilePath)
+        {
+			var projectDirectoryPath = this.GetProjectDirectoryPath(projectFilePath);
+
+			var projectPlanFilePath = Instances.PathOperator.GetFilePath(
+				projectDirectoryPath,
+				Instances.FileNames.ProjectPlan);
+
+			return projectPlanFilePath;
+        }
 	}
 }
