@@ -10,16 +10,31 @@ namespace R5T.S0043
 	public partial interface IGitOperator : IDraftFunctionalityMarker,
 		F0019.IGitOperator
 	{
-		public async Task<string> Clone_NonIdempotent(string repositoryName)
+		public Task<string> Clone_NonIdempotent(string repositoryName)
         {
+			return this.Clone_NonIdempotent(
+				repositoryName,
+				Instances.GitHubOwners.SafetyCone);
+        }
+
+		public async Task<string> Clone_NonIdempotent(
+			string repositoryName,
+			string repositoryOwnerName)
+		{
 			var cloneUrl = await Instances.GitHubOperator.GetCloneUrl(
-				Instances.GitHubOwners.SafetyCone,
+				repositoryOwnerName,
 				repositoryName);
 
-			var repositoryDirectoryName = repositoryName;
+			var ownerDirectoryName = Instances.DirectoryNameOperator.GetRepositoryOwnerDirectoryName(repositoryOwnerName);
+
+			var localOwnerRepositoryDirectoryPath = Instances.PathOperator.GetDirectoryPath(
+				Instances.DirectoryPaths.GitHubRepositoriesDirectory,
+				ownerDirectoryName);
+
+			var repositoryDirectoryName = Instances.DirectoryNameOperator.GetRepositoryDirectoryName(repositoryName);
 
 			var localRepositoryDirectoryPath = Instances.PathOperator.GetDirectoryPath(
-				Instances.DirectoryPaths.SafetyConeRepositoriesDirectory,
+				localOwnerRepositoryDirectoryPath,
 				repositoryDirectoryName);
 
 			var authentication = await Instances.GitHubOperator.GetGitHubAuthentication();

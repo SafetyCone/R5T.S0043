@@ -9,3 +9,4 @@ C:\Code\DEV\Git\GitHub\SafetyCone\R5T.S0043\source\R5T.S0043.Library\obj\Debug\n
 C:\Code\DEV\Git\GitHub\SafetyCone\R5T.S0043\source\R5T.S0043.Library\obj\Debug\net5.0\R5T.S0043.Library.dll
 C:\Code\DEV\Git\GitHub\SafetyCone\R5T.S0043\source\R5T.S0043.Library\obj\Debug\net5.0\ref\R5T.S0043.Library.dll
 C:\Code\DEV\Git\GitHub\SafetyCone\R5T.S0043\source\R5T.S0043.Library\obj\Debug\net5.0\R5T.S0043.Library.pdb
+C:\Code\DEV\Git\GitHub\SafetyCone\R5T.S0043\source\R5T.S0043.Library\obj\Debug\net5.0\R5T.S0043.Library.csproj.AssemblyReference.cache

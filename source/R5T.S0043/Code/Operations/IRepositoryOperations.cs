@@ -14,9 +14,9 @@ namespace R5T.S0043
 		public async Task CreateNew_ConsoleRepository()
 		{
 			/// Inputs.
-			var name = "R5T.E0049";
-			var description = "Experiment with entity framework core, to refresh my memory.";
-			var isPrivate = true;
+			var name = "R5T.F0027";
+			var description = "Dotnet command line operator.";
+			var isPrivate = false;
 
 			var owner = Instances.GitHubOwners.SafetyCone;
 
@@ -164,8 +164,8 @@ namespace R5T.S0043
 		public async Task CreateNew_LibraryOnlyRepository()
 		{
 			/// Inputs.
-			var name = "R5T.R0002";
-			var description = "Common layout and other basic Razor components.";
+			var name = "R5T.F0030";
+			var description = "SSH.NET related functionality.";
 			var isPrivate = false;
 
 			var owner = Instances.GitHubOwners.SafetyCone;

@@ -20,18 +20,24 @@ namespace R5T.S0043
 			GitHubRepositorySpecification repositorySpecification,
 			ILogger logger)
         {
+			var ownedRepositoryName = Instances.RepositoryNameOperator.GetOwnedRepositoryName(
+				repositorySpecification.Organization,
+				repositorySpecification.Name);
+
 			var repositoryName = repositorySpecification.Name;
 
-			logger.LogInformation($"Creating new remote GitHub repository '{repositoryName}'...");
+			logger.LogInformation($"Creating new remote GitHub repository '{ownedRepositoryName}'...");
 
 			await Instances.GitHubOperator.CreateRepository_NonIdempotent(repositorySpecification);
 
-			logger.LogInformation($"Created new remote GitHub repository '{repositoryName}'.");
+			logger.LogInformation($"Created new remote GitHub repository '{ownedRepositoryName}'.");
 
 			// Clone local.
 			logger.LogInformation($"Cloning to local directory repository...");
 
-			var localRepositoryDirectoryPath = await Instances.GitOperator.Clone_NonIdempotent(repositoryName);
+			var localRepositoryDirectoryPath = await Instances.GitOperator.Clone_NonIdempotent(
+				repositoryName,
+				repositorySpecification.Organization);
 
 			logger.LogInformation($"Cloned to local directory repository.");
 
@@ -137,13 +143,15 @@ namespace R5T.S0043
         {
 			var output = new GitHubRepositorySpecification
 			{
-				Organization = Instances.GitHubOwners.SafetyCone,
+				Organization = ownerName,
 				Name = name,
 				Description = description,
-				Visibility = GitHubRepositoryVisibility.Private,
 				InitializeWithReadMe = true,
 				License = GitHubRepositoryLicense.MIT,
 			};
+
+			// Set visibility.
+			output.IsPrivate(isPrivate);
 
 			return output;
 		}
@@ -153,13 +161,17 @@ namespace R5T.S0043
 			string repositoryOwnerName,
 			ILogger logger)
         {
-			logger.LogInformation($"Checking if remote GitHub repository '{repositoryName}' already exists...");
+			var ownedRepositoryName = Instances.RepositoryNameOperator.GetOwnedRepositoryName(
+				repositoryOwnerName,
+				repositoryName);
+
+			logger.LogInformation($"Checking if remote GitHub repository '{ownedRepositoryName}' already exists...");
 
 			var remoteRepositoryAlreadyExists = await Instances.RemoteRepositoryOperator.RepositoryExists(
 				repositoryOwnerName,
 				repositoryName);
 
-			logger.LogInformation($"Checking if local directory repository '{repositoryName}' already exists...");
+			logger.LogInformation($"Checking if local directory repository '{ownedRepositoryName}' already exists...");
 
 			var localRepositoryAlreadyExists = Instances.LocalRepositoryOperator.RepositoryExists(
 				repositoryOwnerName,
@@ -168,10 +180,6 @@ namespace R5T.S0043
 			// Error if remote or local repositories exist.
 			if (remoteRepositoryAlreadyExists || localRepositoryAlreadyExists)
 			{
-				var ownedRepositoryName = Instances.RepositoryNameOperator.GetOwnedRepositoryName(
-					repositoryOwnerName,
-					repositoryName);
-
 				throw new Exception($"Repository already exists.{Environment.NewLine}\tRemote '{ownedRepositoryName}' exists: {remoteRepositoryAlreadyExists}{Environment.NewLine}\tLocal '{repositoryName}' exists: {localRepositoryAlreadyExists}");
 			}
 		}

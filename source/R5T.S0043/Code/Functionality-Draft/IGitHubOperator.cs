@@ -39,9 +39,14 @@ namespace R5T.S0043
 
             var gitHubClient = await this.GetGitHubClient();
 
-            var createdRepository = await gitHubClient.Repository.Create(
-                repositorySpecification.Organization,
-                newRepository);
+            var currentUser = await gitHubClient.User.Current();
+
+            var createdRepository = currentUser.Login == repositorySpecification.Organization
+                ? await gitHubClient.Repository.Create(newRepository)
+                : await gitHubClient.Repository.Create(
+                    repositorySpecification.Organization,
+                    newRepository)
+                ;
 
             // Wait a few seconds for the repository to be fully created on GitHub's side. This allows any following operations that request the repository to succeed.
             await Task.Delay(3000);
