@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>R5T.Magyar.T002.X000</name>
+    </assembly>
+    <members>
+        <member name="M:System.IExceptionGeneratorExtensions.PathWasNullOrEmpty(R5T.Magyar.T002.IExceptionGenerator)">
+            <summary>
+            Chooses <see cref="M:System.IExceptionGeneratorExtensions.PathWasNullOrEmpty_InvalidOperation(R5T.Magyar.T002.IExceptionGenerator)"/> as the default.
+            </summary>
+        </member>
+        <member name="T:R5T.Magyar.T002.X000.Documentation">
+            <summary>
+            Uncategorized extensions.
+            </summary>
+        </member>
+    </members>
+</doc>

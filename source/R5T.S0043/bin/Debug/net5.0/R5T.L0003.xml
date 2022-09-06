@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>R5T.L0003</name>
+    </assembly>
+    <members>
+        <member name="T:R5T.L0003.Documentation">
+            <summary>
+            <see cref="N:Octokit"/> Nuget package selector.
+            </summary>
+        </member>
+    </members>
+</doc>

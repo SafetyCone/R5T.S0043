@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>R5T.T0041</name>
+    </assembly>
+    <members>
+        <member name="T:R5T.T0041.DirectorySeparator">
+            <summary>
+            Empty implementation as base for extension methods.
+            </summary>
+        </member>
+        <member name="T:R5T.T0041.FileExtensionSeparator">
+            <summary>
+            Empty implementation as base for extension methods.
+            </summary>
+        </member>
+        <member name="T:R5T.T0041.FileNameOperator">
+            <summary>
+            Empty implementation as base for extension methods.
+            </summary>
+        </member>
+        <member name="T:R5T.T0041.PathOperator">
+            <summary>
+            Empty implementation as base for extension methods.
+            </summary>
+        </member>
+        <member name="T:R5T.T0041.IDirectorySeparator">
+            <summary>
+            Empty interface as base for extension methods.
+            </summary>
+        </member>
+        <member name="T:R5T.T0041.IFileExtensionSeparator">
+            <summary>
+            Empty interface as base for extension methods.
+            </summary>
+        </member>
+        <member name="T:R5T.T0041.IFileNameOperator">
+            <summary>
+            Empty interface as base for extension methods.
+            </summary>
+        </member>
+        <member name="T:R5T.T0041.IPathOperator">
+            <summary>
+            Empty interface as base for extension methods.
+            </summary>
+        </member>
+        <member name="T:R5T.T0041.Documentation">
+            <summary>
+            IPath and related empty extension method base types.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>R5T.T0042</name>
+    </assembly>
+    <members>
+        <member name="T:R5T.T0042.Character">
+            <summary>
+            Empty implementation as base for extension methods.
+            </summary>
+        </member>
+        <member name="T:R5T.T0042.CharacterOperator">
+            <summary>
+            Empty implementation as base for extension methods.
+            </summary>
+        </member>
+        <member name="T:R5T.T0042.String">
+            <summary>
+            Empty implementation as base for extension methods.
+            </summary>
+        </member>
+        <member name="T:R5T.T0042.StringOperator">
+            <summary>
+            Empty implementation as base for extension methods.
+            </summary>
+        </member>
+        <member name="T:R5T.T0042.ICharacter">
+            <summary>
+            Base for extensions ...
+            </summary>
+        </member>
+        <member name="T:R5T.T0042.ICharacterOperator">
+            <summary>
+            Base for extensions ...
+            </summary>
+        </member>
+        <member name="T:R5T.T0042.IString">
+            <summary>
+            Empty interface as base for extension methods.
+            </summary>
+        </member>
+        <member name="T:R5T.T0042.IStringOperator">
+            <summary>
+            Empty interface as base for extension methods.
+            </summary>
+        </member>
+        <member name="T:R5T.T0042.Documentation">
+            <summary>
+            <see cref="T:R5T.T0042.IString"/> and related empty extension method base types.
+            </summary>
+        </member>
+    </members>
+</doc>

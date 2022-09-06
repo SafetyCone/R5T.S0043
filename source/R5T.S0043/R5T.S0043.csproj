@@ -5,10 +5,26 @@
     <TargetFramework>net5.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>1573;1587;1591</NoWarn>
+    <ApplicationIcon />
+    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\R5T.D0082\source\R5T.D0082.T000\R5T.D0082.T000.csproj" />
+    <ProjectReference Include="..\..\..\R5T.F0002\source\R5T.F0002\R5T.F0002.csproj" />
+    <ProjectReference Include="..\..\..\R5T.F0019\source\R5T.F0019\R5T.F0019.csproj" />
+    <ProjectReference Include="..\..\..\R5T.F0020\source\R5T.F0020\R5T.F0020.csproj" />
+    <ProjectReference Include="..\..\..\R5T.F0024\source\R5T.F0024\R5T.F0024.csproj" />
+    <ProjectReference Include="..\..\..\R5T.L0003\source\R5T.L0003\R5T.L0003.csproj" />
+    <ProjectReference Include="..\..\..\R5T.L0017\source\R5T.L0017\R5T.L0017.csproj" />
+    <ProjectReference Include="..\..\..\R5T.L0019\source\R5T.L0019\R5T.L0019.csproj" />
     <ProjectReference Include="..\..\..\R5T.T0132\source\R5T.T0132\R5T.T0132.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Files\R5T.S0043\gitignore-template.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

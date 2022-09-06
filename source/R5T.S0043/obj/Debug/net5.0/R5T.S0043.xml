@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>R5T.S0043</name>
+    </assembly>
+    <members>
+        <member name="T:R5T.S0043.T000.DraftTypeMarkerAttribute">
+            <summary>
+            Attribute indicating a type is a draft type (can be either an interface, or a class).
+            The marker attribute is useful for surveying for draft types and building a catalogue of draft types as a kind of TODO list.
+            </summary>
+        </member>
+        <member name="P:R5T.S0043.T000.DraftTypeMarkerAttribute.IsDraftType">
+            <summary>
+            Allows specifying that a type is *not* a draft type.
+            This is useful for marking types that end up canonical draft type file locations, but are not actually draft types.
+            </summary>
+        </member>
+        <member name="T:R5T.S0043.T000.IDraftTypeMarker">
+            <summary>
+            Marker interface for draft types (types that should be moved to a permanent library location, or improved).
+            Allows methods-for, and extension methods-on, all types that are draft types.
+            </summary>
+        </member>
+        <member name="T:R5T.S0043.Documentation">
+            <summary>
+            Nazareth code element generation scripts for repositories, solutions, projects, and code files.
+            </summary>
+        </member>
+        <member name="T:R5T.S0043.IGitHubOperator">
+            <summary>
+            
+            </summary>
+            <remarks>
+            Prior work: R5T.D0082.I001.GitHubOperator
+            </remarks>
+        </member>
+        <member name="M:R5T.S0043.IRepositoryOperator.CreateNew_NonIdempotent(R5T.D0082.T000.GitHubRepositorySpecification,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Creates a repository and returns the local repository directory path.
+            </summary>
+            <returns>The local repository directory path.</returns>
+        </member>
+        <member name="M:R5T.S0043.IRepositoryOperations.CreateNew_LibraryOnlyRepository">
+            <summary>
+            Library only means that no construction project is created, just the library project.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:R5T.S0043.IRepositoryTestOperations.TryCreate_NewLibraryOnlyRepository">
+            <summary>
+            Library only means that no construction project is created, just the library project.
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
