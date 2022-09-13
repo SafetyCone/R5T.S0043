@@ -79,5 +79,54 @@ namespace R5T.S0043
 
 			return projectFilePath;
         }
+
+		public string CreateConsoleProjectInExistingSolution(
+			string solutionFilePath,
+			string projectName,
+			string projectDescription)
+		{
+			// Check that solution file exists.
+			var solutionFileExists = Instances.FileSystemOperator.FileExists(solutionFilePath);
+			if (!solutionFileExists)
+			{
+				throw new Exception($"Solution file does not exist.{Environment.NewLine}\t{solutionFilePath}");
+			}
+
+			// Get project file path.
+			var solutionDirectoryPath = Instances.PathOperator.GetParentDirectoryPath_ForFile(solutionFilePath);
+
+			var projectDirectoryName = Instances.DirectoryNameOperator.GetProjectDirectoryName_FromProjectName(projectName);
+			var projectDirectoryPath = Instances.PathOperator.GetDirectoryPath(
+				solutionDirectoryPath,
+				projectDirectoryName);
+
+			var projectFileName = Instances.FileNameOperator.GetProjectFileName_FromProjectName(projectName);
+			var projectFilePath = Instances.PathOperator.GetFilePath(
+				projectDirectoryPath,
+				projectFileName);
+
+			// Check that project file does not already exist.
+			var projectFileExists = Instances.FileSystemOperator.FileExists(projectFilePath);
+			if (projectFileExists)
+			{
+				throw new Exception($"Project file already exists.{Environment.NewLine}\t{projectFilePath}");
+			}
+
+			var namespaceName = Instances.ProjectNamespacesOperator.GetDefaultNamespaceName_FromProjectName(projectName);
+
+			// Ensure the project directory exists.
+			Instances.FileSystemOperator.CreateDirectory_OkIfAlreadyExists(projectDirectoryPath);
+
+			// Create the project file.
+			Instances.ProjectFileGenerator.CreateNewConsole(projectFilePath);
+
+			Instances.ProjectOperator.SetupProject_Console(
+				projectFilePath,
+				projectDescription,
+				projectName,
+				namespaceName);
+
+			return projectFilePath;
+		}
 	}
 }

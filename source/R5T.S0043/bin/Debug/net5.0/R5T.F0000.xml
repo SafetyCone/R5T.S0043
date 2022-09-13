@@ -169,6 +169,11 @@
             Chooses <see cref="M:R5T.F0000.IFileExtensionOperator.GetFileExtensionSeparator_Char"/> as the default.
             </summary>
         </member>
+        <member name="M:R5T.F0000.IFileOperator.WriteAnEmptyFile(System.String)">
+            <summary>
+            WCreates a file with nothing in it.
+            </summary>
+        </member>
         <member name="T:R5T.F0000.IFileSystemOperator">
             <summary>
             
@@ -346,6 +351,30 @@
             Determines if the version property value is the value returned by <see cref="M:R5T.F0000.IVersionOperator.GetUndefinedVersionPropertyValue"/> (which is -1, negative one).
             </summary>
         </member>
+        <member name="M:R5T.F0000.IXmlOperator.CreateNewDocument(System.Xml.Linq.XElement)">
+            <summary>
+            Chooses <see cref="M:R5T.F0000.IXmlOperator.CreateNewDocument_WithDefaultDeclaration(System.Xml.Linq.XElement)"/> as the default.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IXmlOperator.CreateNewDocumentWithRoot(System.String)">
+            <summary>
+            Chooses <see cref="M:R5T.F0000.IXmlOperator.CreateNewDocumentWithRoot_WithXsdAndXsi(System.String)"/> as the default.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IXmlOperator.CreateNewDocument">
+            <summary>
+            Chooses <see cref="M:R5T.F0000.IXmlOperator.CreateNewDocument_WithDefaultDeclaration"/> as the deafult.
+            </summary>
+        </member>
+        <member name="M:R5T.F0000.IXmlOperator.WriteToFile_EmptyIsOk(System.Xml.Linq.XDocument,System.String)">
+            <summary>
+            XML files *must* have a root: https://www.w3schools.com/xml/xml_syntax.asp
+            So if the document has no root, saving the document results in an <see cref="T:System.InvalidOperationException"/>: Token EndDocument in state Document would result in an invalid XML document.
+            This method will allow writing an empty document.
+            If the document has no root, just the declaration is written.
+            If the document also has no declaration, nothing is written.
+            </summary>
+        </member>
         <member name="P:R5T.F0000.IVersions.Default">
             <summary>
             The default version (for assuming when no version is present) is 1.0.0.
@@ -354,6 +383,11 @@
         <member name="P:R5T.F0000.IVersions.None">
             <summary>
             The none version is just null (since Version is a reference type).
+            </summary>
+        </member>
+        <member name="P:R5T.F0000.IXmlNamespaceNames.XmlNamespaceName">
+            <summary>
+            xmlns
             </summary>
         </member>
     </members>

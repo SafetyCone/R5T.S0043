@@ -14,11 +14,17 @@ namespace R5T.S0043
 		public async Task CreateNew_ConsoleRepository()
 		{
 			/// Inputs.
-			var name = "R5T.F0027";
-			var description = "Dotnet command line operator.";
+			var name =
+				//"R5T.F0027"
+				"D8S.E0002"
+				;
+			var description = "Repository for blog post on creating service providers from scratch.";
 			var isPrivate = false;
 
-			var owner = Instances.GitHubOwners.SafetyCone;
+			var owner =
+				//Instances.GitHubOwners.SafetyCone
+				Instances.GitHubOwners.DavidCoats
+				;
 
 
 			/// Run.
@@ -164,8 +170,8 @@ namespace R5T.S0043
 		public async Task CreateNew_LibraryOnlyRepository()
 		{
 			/// Inputs.
-			var name = "R5T.F0030";
-			var description = "SSH.NET related functionality.";
+			var name = "R5T.F0031";
+			var description = "Markdown functionality library (Markdig-based).";
 			var isPrivate = false;
 
 			var owner = Instances.GitHubOwners.SafetyCone;
