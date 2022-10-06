@@ -14,6 +14,12 @@ namespace R5T.S0043
 			return output;
         }
 
+		public string GetConstructionSolutionName(string solutionName)
+        {
+			var constructionSolutionName = $"{solutionName}.Construction";
+			return constructionSolutionName;
+		}
+
 		public string GetUnadjustedSolutionName_FromUnadjustedLibraryName(string unadjustedLibraryName)
         {
 			// The unadjusted solution name is just the unadjusted library name.

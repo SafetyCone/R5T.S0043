@@ -12,13 +12,23 @@ namespace R5T.S0043
             //Program.CreateProgramFile();
 
             //await Instances.RepositoryOperations.CreateNew_EmptyRepository_NonIdempotent();
+            //await Instances.RepositoryOperations.CreateNew_MinimalRepository_NonIdempotent();
             //await Instances.RepositoryOperations.Delete_Idempotent();
+            //await Instances.RepositoryOperations.CreateNew_LibraryRepository();
             //await Instances.RepositoryOperations.CreateNew_LibraryOnlyRepository();
             //await Instances.RepositoryOperations.CreateNew_ConsoleRepository();
 
-            Instances.SolutionOperations.AddNew_LibraryProjectToSolution();
+            //Instances.SolutionOperations.AddNew_LibraryProjectToSolution();
             //Instances.SolutionOperations.AddNew_ConsoleProjectToSolution();
             //Instances.SolutionOperations.Add_DependencyProjectReferenceToSolution();
+            //Instances.SolutionOperations.CreateNewSolutionFile();
+            //Instances.SolutionOperations.UpgradeSolutionFiles();
+
+            //Instances.ProjectOperations.AddPackageProperties();
+            //Instances.ProjectOperations.CreateProjectFileOnly();
+            //Instances.ProjectOperations.ChangeToNetStandard2_0();
+            //Instances.ProjectOperations.ChangeToNetStandard2_1();
+            //Instances.ProjectOperations.ChangeToNet6_0();
 
             //await GitHubOperations.SubMain();
 
@@ -34,7 +44,7 @@ namespace R5T.S0043
         static Task CreateInstancesFile()
         {
             /// Inputs.
-            var projectFilePath = @"C:\Code\DEV\Git\GitHub\davidcoats\D8S.W0002.Private\source\D8S.W0002\D8S.W0002.csproj";
+            var projectFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.T0142\source\R5T.T0142\R5T.T0142.csproj";
 
             /// Run.
             var instancesFilePath = Instances.ProjectPathsOperator.GetInstancesFilePath(projectFilePath);

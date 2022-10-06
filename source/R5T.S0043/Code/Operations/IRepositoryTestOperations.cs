@@ -94,7 +94,7 @@ namespace R5T.S0043
 			var unadjustedSolutionName = Instances.SolutionNameOperator.GetUnadjustedSolutionName_FromUnadjustedLibraryName(unadjustedLibraryName);
 			var solutionName = Instances.SolutionNameOperator.AdjustSolutionName_ForPrivacy(unadjustedSolutionName, isPrivate);
 
-			var solutionFilePath = Instances.SolutionOperator.Create_Solution(
+			var solutionFilePath = Instances.SolutionOperator.Create_Solution_SourceDirectoryPath(
 				repositorySourceDirectoryPath,
 				solutionName,
 				logger);
@@ -328,7 +328,7 @@ namespace R5T.S0043
 
 			// Setup project.
 			// Create project plan file.
-			var projectPlanFilePath = Instances.PathOperator.GetFilePath(scriptProjectDirectoryPath, Instances.FileNames.ProjectPlan);
+			var projectPlanFilePath = Instances.PathOperator.GetFilePath(scriptProjectDirectoryPath, Instances.FileNames.ProjectPlanTextFile);
 
 			var projectPlanFileExists = Instances.FileSystemOperator.FileExists(projectPlanFilePath);
 			if(projectPlanFileExists)
@@ -339,7 +339,7 @@ namespace R5T.S0043
             {
 				logger.LogInformation("Creating project plan file...");
 
-				Instances.TextFileGenerator.CreateProjectPlan(
+				Instances.TextFileGenerator.CreateProjectPlanTextFile(
 					projectPlanFilePath,
 					scriptProjectName,
 					scriptProjectDescription);

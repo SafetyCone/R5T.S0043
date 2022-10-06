@@ -9,6 +9,5 @@ namespace R5T.S0043
 	public partial interface IDirectoryNames : IDraftValuesMarker
 	{
 		public string Code => "Code";
-		public string RepositorySourceDirectoryName => "source";
 	}
 }

@@ -2,6 +2,7 @@ using System;
 
 using Microsoft.Extensions.Logging;
 
+using R5T.F0024;
 using R5T.T0132;
 
 
@@ -34,9 +35,9 @@ namespace R5T.S0043
 		public void AddNew_ConsoleProjectToSolution()
 		{
 			/// Inputs.
-			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.L0025\source\R5T.L0025.Q000.sln";
-			var projectName = "R5T.L0025.Q000";
-			var projectDescription = "Explorations, experiments, and demonstrations for the Markdig Markdown processor.";
+			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0038\source\R5T.F0038.Construction.sln";
+			var projectName = "R5T.F0038.Construction";
+			var projectDescription = "Construction project for NuGet functionality library.";
 
 			/// Run.
 			// Create the project file.
@@ -62,9 +63,9 @@ namespace R5T.S0043
 		public void AddNew_LibraryProjectToSolution()
 		{
 			/// Inputs.
-			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0031\source\R5T.F0031.F001.sln";
-			var projectName = "R5T.F0031.F001";
-			var projectDescription = "Web-related markdown functionality.";
+			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0040\source\R5T.F0040.Construction.sln";
+			var projectName = "R5T.F0040.F000";
+			var projectDescription = "Limited dependencies project paths functionality.";
 
 			/// Run.
 			// Create the project file.
@@ -72,6 +73,9 @@ namespace R5T.S0043
 				solutionFilePath,
 				projectName,
 				projectDescription);
+
+			// Set package properties.
+			Instances.ProjectOperations.AddPackageProperties(projectFilePath);
 
 			// Add to the solution.
 			// First create a backup copy of the solution file (in case solution functionality does not work).
@@ -87,11 +91,94 @@ namespace R5T.S0043
 				projectFilePath);
 		}
 
-		public void CreateNewLibraryOnlySolution(
-			string repositoryDirectoryPath,
-			ILogger logger)
+		public void CreateNewSolutionFile()
         {
+			/// Inputs.
+			var solutionName = "TestSolution";
+			var repositoryDirectoryPath = @"C:\Code\DEV\Git\GitHub\SafetyCone\Test123";
+			var visualStudioVersion = VisualStudioVersion.Version_2022;
 
+			/// Run.
+			using var services = Instances.ServicesOperator.GetServicesContext();
+
+			var logger = services.GetService<ILogger<ISolutionOperations>>();
+
+			var repositorySourceDirectoryPath = Instances.RepositoryPathsOperator.GetSourceDirectoryPath(repositoryDirectoryPath);
+
+			var solutionDirectoryPath = Instances.SolutionPathsOperator.GetSolutionDirectoryPath_FromRepositorySourceDirectoryPath(repositorySourceDirectoryPath);
+
+			var createNewSolutionFileResult = Instances.SolutionOperator.CreateNew_SolutionFile(
+				visualStudioVersion,
+				solutionDirectoryPath,
+				solutionName,
+				logger);
+
+			Instances.Operations.WriteResultAndOpenInNotepadPlusPlus(
+				createNewSolutionFileResult,
+				Instances.FilePaths.ResultOutputFilePath,
+				logger);
         }
+
+		public void UpgradeSolutionFiles()
+		{
+			/// Inputs.
+			var pushChangesToRemote = false;
+			var solutionFilePaths = new[]
+			{
+				@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.S0042\source\R5T.S0042.sln",
+			};
+
+
+			/// Run.
+			using var services = Instances.ServicesOperator.GetServicesContext();
+
+			var logger = services.GetService<ILogger<ISolutionOperations>>(); 
+
+			foreach (var solutionFilePath in solutionFilePaths)
+			{
+				var solutionFile = F0024.Instances.SolutionFileSerializer.Deserialize(solutionFilePath);
+
+				var visualStudioVersionDescription = solutionFile.VersionInformation.VersionDescription;
+
+				var visualStudioVersionIs2019 = visualStudioVersionDescription == "# Visual Studio Version 16";
+				if (!visualStudioVersionIs2019)
+				{
+					throw new Exception($"Unknown Visual Studio version, refusing to upgrade:\n{visualStudioVersionDescription}");
+				}
+
+				// Save a copy.
+				var vs2019SolutionFilePath = F0002.Instances.PathOperator.AppendToFileNameStem(
+					solutionFilePath,
+					"_VS2019");
+
+				F0000.Instances.FileSystemOperator.CopyFile(
+					solutionFilePath,
+					vs2019SolutionFilePath);
+
+				// Upgrade the file.
+				solutionFile.VersionInformation.VersionDescription = F0024.Instances.VersionInformationOperator.GetVisualStudioVersionDescription(
+					F0024.Instances.VisualStudioVersionStrings.Version_17);
+
+				solutionFile.VersionInformation.Version = F0024.Instances.VersionInformationOperator.GetVisualStudioVersionLine(
+					F0024.Instances.VisualStudioVersions.VisualStudio_2022);
+
+				// Save the file, overwriting.
+				F0024.Instances.SolutionFileSerializer.Serialize(
+					solutionFilePath,
+					solutionFile);
+
+				// Push change to remote.
+				var solutionIsInRepository = Instances.GitOperator.HasRepository(solutionFilePath);
+				if(pushChangesToRemote && solutionIsInRepository)
+                {
+					var repositoryDirectoryPath = solutionIsInRepository.Result;
+
+					Instances.GitHubOperator.PushAllChanges_NoResult(
+						repositoryDirectoryPath,
+						Instances.CommitMessages.UpgradeSolutionFileToVS2022,
+						logger);
+				}
+			}
+		}
 	}
 }

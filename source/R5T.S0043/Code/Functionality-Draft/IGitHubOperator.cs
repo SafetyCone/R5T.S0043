@@ -2,12 +2,14 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
+using Microsoft.Extensions.Logging;
+
 using Octokit;
 
-using R5T.Aalborg;
-
-using R5T.D0082.T000;
+using R5T.F0041;
 using R5T.T0132;
+using R5T.T0144;
+using R5T.T0146;
 
 
 namespace R5T.S0043
@@ -19,9 +21,14 @@ namespace R5T.S0043
     /// Prior work: R5T.D0082.I001.GitHubOperator
     /// </remarks>
 	[DraftFunctionalityMarker]
-	public partial interface IGitHubOperator : IDraftFunctionalityMarker
+	public partial interface IGitHubOperator : IDraftFunctionalityMarker,
+        F0041.IGitHubOperator
 	{
-        public async Task<long> CreateRepository_NonIdempotent(GitHubRepositorySpecification repositorySpecification)
+        /// <summary>
+        /// Creates a repository, and returns the repository ID.
+        /// </summary>
+        /// <returns>A result containing the repository ID.</returns>
+        public async Task<Result<long>> CreateRepository_NonIdempotent_Result(GitHubRepositorySpecification repositorySpecification)
         {
             var autoInit = repositorySpecification.InitializeWithReadMe;
 
@@ -41,207 +48,234 @@ namespace R5T.S0043
 
             var currentUser = await gitHubClient.User.Current();
 
-            var createdRepository = currentUser.Login == repositorySpecification.Organization
-                ? await gitHubClient.Repository.Create(newRepository)
-                : await gitHubClient.Repository.Create(
-                    repositorySpecification.Organization,
-                    newRepository)
-                ;
-
-            // Wait a few seconds for the repository to be fully created on GitHub's side. This allows any following operations that request the repository to succeed.
-            await Task.Delay(3000);
-
-            return createdRepository.Id;
-        }
-
-        public async Task<long> CreateRepository(GitHubRepositorySpecification repositorySpecification)
-        {
-            var repositoryExists = await this.RepositoryExists(
+            var ownedRepositoryName = Instances.RepositoryNameOperator.GetOwnedRepositoryName(
                 repositorySpecification.Organization,
                 repositorySpecification.Name);
 
-            var repositoryID = repositoryExists
-                ? await this.GetRepositoryID(
-                    repositorySpecification.Organization,
-                    repositorySpecification.Name)
-                : await this.CreateRepository_NonIdempotent(repositorySpecification);
+            var result = T0146.Instances.ResultOperator.Result<long>()
+                .WithTitle("Create new GitHub Repository")
                 ;
 
-            return repositoryID;
-        }
-
-        public async Task DeleteRepository_NonIdempotent(string owner, string name)
-        {
-            var gitHubClient = await this.GetGitHubClient();
-
-            await gitHubClient.Repository.Delete(owner, name);
-        }
-
-        public async Task DeleteRepository(string owner, string name)
-        {
-            var repositoryExists = await this.RepositoryExists(owner, name);
-            if(repositoryExists)
+            try
             {
-                await this.DeleteRepository_NonIdempotent(owner, name);
+                var createdRepository = currentUser.Login == repositorySpecification.Organization
+                    ? await gitHubClient.Repository.Create(newRepository)
+                    : await gitHubClient.Repository.Create(
+                        repositorySpecification.Organization,
+                        newRepository)
+                    ;
+
+                // Wait a few seconds for the repository to be fully created on GitHub's side. This allows any following operations that request the repository to succeed.
+                await Task.Delay(3000);
+
+                result
+                    .WithValue(createdRepository.Id)
+                    .WithSuccess($"Created new GitHub repository: {ownedRepositoryName}")
+                    ;
             }
-        }
-
-        public async Task<T> GetFromRepository<T>(
-            string owner,
-            string name,
-            Func<Repository, Task<T>> repositoryFunction)
-        {
-            var gitHubClient = await this.GetGitHubClient();
-
-            var repository = await this.GetRepository(gitHubClient,
-                owner, name);
-
-            var output = await repositoryFunction(repository);
-            return output;
-        }
-
-        public Task<Authentication> GetGitHubAuthentication()
-        {
-            var gettingGitHubAuthentication = Instances.JsonOperator.LoadFromFile<Authentication>(
-                 Instances.FilePaths.GitHubAuthenticationFile_Json,
-                 "GitHubAuthentication");
-
-            return gettingGitHubAuthentication;
-        }
-
-        public Authentication GetGitHubAuthentication_Synchronous()
-        {
-            var gitHubAuthentication = Instances.JsonOperator.LoadFromFile_Synchronous<Authentication>(
-                 Instances.FilePaths.GitHubAuthenticationFile_Json,
-                 "GitHubAuthentication");
-
-            return gitHubAuthentication;
-        }
-
-        public async Task<GitHubClient> GetGitHubClient()
-        {
-            var gitHubAuthentication = await this.GetGitHubAuthentication();
-
-            var gitHubClient = this.GetGitHubClient(gitHubAuthentication);
-            return gitHubClient;
-        }
-
-        public GitHubClient GetGitHubClient_Synchronous()
-        {
-            var gitHubAuthentication = this.GetGitHubAuthentication_Synchronous();
-
-            var gitHubClient = this.GetGitHubClient(gitHubAuthentication);
-            return gitHubClient;
-        }
-
-        public GitHubClient GetGitHubClient(Authentication gitHubAuthentication)
-        {
-            // Get a GitHub client.
-            var productHeaderValueValue = "Rivet";
-            var productHeaderValue = ProductHeaderValue.Parse(productHeaderValueValue);
-
-            var basicAuthentication = new Credentials(
-                gitHubAuthentication.Username,
-                gitHubAuthentication.Password);
-
-            var gitHubClient = new GitHubClient(productHeaderValue)
+            catch(Exception exception)
             {
-                Credentials = basicAuthentication,
-            };
+                result.WithFailure($"GitHub repository creation failed: {ownedRepositoryName}", exception);
+            }
 
-            return gitHubClient;
+            return result;
         }
 
-        public Task<Repository> GetRepository(GitHubClient gitHubClient,
+        public async Task<Result> DeleteRepository_NonIdempotent_Result(string owner, string name)
+        {
+            var ownedRepositoryName = Instances.RepositoryNameOperator.GetOwnedRepositoryName(owner, name);
+
+            var result = T0146.Instances.ResultOperator.Result()
+                .WithTitle("Delete GitHub Repository")
+                ;
+
+            try
+            {
+                var gitHubClient = await this.GetGitHubClient();
+
+                await gitHubClient.Repository.Delete(owner, name);
+
+                result.WithSuccess($"Deleted GitHub repository: {ownedRepositoryName}");
+            }
+            catch (Exception exception)
+            {
+                result.WithFailure($"Unable to delete GitHub repository: {ownedRepositoryName}", exception);
+            }
+
+            return result;
+        }
+
+        public async Task<Result<bool>> DeleteRepository_Idempotent_Result(string owner, string name)
+        {
+            var result = T0146.Instances.ResultOperator.Result<bool>()
+                .WithTitle("Delete GitHub Repository")
+                ;
+
+            var ownedRepositoryName = Instances.RepositoryNameOperator.GetOwnedRepositoryName(owner, name);
+
+            var repositoryExistsResult = await this.RepositoryExists_Result(owner, name);
+            var repositoryExists = repositoryExistsResult.Value;
+
+            result.WithValue(repositoryExists);
+
+            IReason repositoryExistsReason = repositoryExistsResult.IsSuccess()
+                ? T0146.Instances.ReasonOperator.Success($"Repository '{ownedRepositoryName}' exists: {repositoryExists}")
+                : T0146.Instances.ReasonOperator.Failure($"Repository existence check failed: {ownedRepositoryName}", repositoryExistsResult.Failures)
+                ;
+
+            result.WithReason(repositoryExistsReason).WithChild(repositoryExistsResult);
+
+            if (repositoryExists)
+            {
+                var deleteRepositoryResult = await this.DeleteRepository_NonIdempotent_Result(owner, name);
+
+                IReason deleteRepositoryReason = deleteRepositoryResult.IsSuccess()
+                    ? T0146.Instances.ReasonOperator.Success($"Deleted GitHub repository: {ownedRepositoryName}")
+                    : T0146.Instances.ReasonOperator.Failure($"Unable to delete GitHub repository: {ownedRepositoryName}", deleteRepositoryResult.Failures)
+                    ;
+
+                result.WithReason(deleteRepositoryReason).WithChild(deleteRepositoryResult);
+            }
+            else
+            {
+                result.WithReason(T0146.Instances.ReasonOperator.Success($"Repository '{ownedRepositoryName}' already did not exist, no need to delete"));
+            }
+
+            return result;
+        }
+
+        public async Task<Result<bool>> RepositoryExists_Result(string owner, string name)
+        {
+            var ownedRepositoryName = Instances.RepositoryNameOperator.GetOwnedRepositoryName(owner, name);
+
+            var result = T0146.Instances.ResultOperator.Result<bool>()
+                .WithTitle("Check GitHub Repository Exists")
+                ;
+
+            try
+            {
+                var repositoryExists = await this.RepositoryExists(owner, name);
+
+                var message = repositoryExists
+                    ? $"GitHub repository exists: {ownedRepositoryName}"
+                    : $"GitHub repository does not exist: {ownedRepositoryName}"
+                    ;
+
+                result
+                    .WithValue(repositoryExists)
+                    .WithSuccess(message)
+                    ;
+            }
+            catch (Exception exception)
+            {
+                result.WithFailure($"Repository existence check failed: {ownedRepositoryName}", exception);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Stages, commits, and pushes all changes in a local directory path using the given commit message.
+        /// </summary>
+        /// <returns>True if any unpushed changes were pushed (there were any changes to push), false if not (there were no unpushed changes to push).</returns>
+        public Result<bool> PushAllChanges(
+            string repositoryLocalDirectoryPath,
+            string commitMessage,
+            ILogger logger)
+        {
+            var result = Instances.ResultOperator.Result<bool>()
+                .WithTitle("Push All Changes")
+                .WithMetadata("Repository local eirectory path", repositoryLocalDirectoryPath)
+                .WithMetadata("Commit message", commitMessage)
+                ;
+
+            logger.LogInformation($"Checking whether repository has any unpushed changes...\n\t{repositoryLocalDirectoryPath}");
+
+            var hasAnyUnpushedChangesResult = Instances.GitOperator.HasUnpushedLocalChanges_Result(repositoryLocalDirectoryPath);
+            var hasAnyUnpushedChanges = hasAnyUnpushedChangesResult.Value;
+
+            logger.LogInformation($"Checked whether repository has any unpushed changes.\n\t{repositoryLocalDirectoryPath}");
+
+            IReason hasAnyUnpushedChangesReason = hasAnyUnpushedChangesResult.IsSuccess()
+                ? Instances.ReasonOperator.Success($"Unpushed changes check succeed. Any unpushed changes: {hasAnyUnpushedChanges}")
+                : Instances.ReasonOperator.Failure($"Unpushed changes check failed.", hasAnyUnpushedChangesResult.Failures)
+                ;
+
+            result.WithChild(hasAnyUnpushedChangesResult).WithReason(hasAnyUnpushedChangesReason);
+
+            if(hasAnyUnpushedChanges)
+            {
+                result.WithValue(true);
+
+                logger.LogInformation("Unpushed changes detected.");
+
+                // Stage all unstaged paths.
+                var stageAllUnstagedPathsResult = Instances.GitOperator.StageAllUnstagedPaths_Result(repositoryLocalDirectoryPath);
+
+                IReason stageAllUnstagedPathsReason = stageAllUnstagedPathsResult.IsSuccess()
+                    ? Instances.ReasonOperator.Success("All unstaged paths staged.")
+                    : Instances.ReasonOperator.Failure("Failed to stage all unstaged paths.", stageAllUnstagedPathsResult.Failures)
+                    ;
+
+                result.WithChild(stageAllUnstagedPathsResult).WithReason(stageAllUnstagedPathsReason);
+
+                // Commit changes with commit message.
+                var commitChangesResult = Instances.GitOperator.Commit_Result(
+                    repositoryLocalDirectoryPath,
+                    commitMessage);
+
+                IReason commitChangesReason = commitChangesResult.IsSuccess()
+                    ? Instances.ReasonOperator.Success("Commited changes.")
+                    : Instances.ReasonOperator.Failure("Failed to commit changes.", commitChangesResult.Failures)
+                    ;
+
+                result.WithChild(commitChangesResult).WithReason(commitChangesReason);
+
+                // Push changes to GitHub.
+                var pushChangesResult = Instances.GitOperator.Push_Result(repositoryLocalDirectoryPath);
+
+                IReason pushChangesReason = pushChangesResult.IsSuccess()
+                    ? Instances.ReasonOperator.Success("Pushed changes.")
+                    : Instances.ReasonOperator.Failure("Failed to push changes.", pushChangesResult.Failures)
+                    ;
+
+                result.WithChild(pushChangesResult).WithReason(pushChangesReason);
+
+                result.WithSuccess("Unpushed changes pushed.");
+            }
+            else
+            {
+                logger.LogInformation("No unpushed changes detected. No need to push changes.");
+
+                result
+                    .WithValue(false)
+                    .WithSuccess("No unpushed changes detected. No need to push changes.")
+                    ;
+            }
+
+            return result;
+        }
+
+        public async Task<Result> VerifyRepositoryDoesNotExist_Result(
             string owner,
             string name)
         {
-            return gitHubClient.Repository.Get(owner, name);
-        }
-
-        public async Task<long> GetRepositoryID(string owner, string name)
-        {
-            var output = await this.GetFromRepository(
-                owner,
-                name,
-                repository => Task.FromResult(repository.Id));
-
-            return output;
-        }
-
-        public async Task<string> GetCloneUrl(string owner, string name)
-        {
-            var output = await this.GetFromRepository(owner, name,
-                repository => Task.FromResult(repository.CloneUrl));
-
-            return output;
-        }
-
-        public async Task<T> InClientContext<T>(Func<GitHubClient, Task<T>> gitHubClientAction)
-        {
-            var gitHubClient = this.GetGitHubClient_Synchronous();
-
-            var output = await gitHubClientAction(gitHubClient);
-            return output;
-        }
-
-        public async Task<bool> IsPrivate(string owner, string name)
-        {
-            var isPrivate = await this.GetFromRepository(owner, name,
-                repository =>
-                {
-                    var output = repository.Private;
-
-                    return Task.FromResult(output);
-                });
-
-            return isPrivate;
-        }
-
-        public Task<bool> IsPrivate_SafetyCone(string name)
-        {
-            return this.IsPrivate(
-                Instances.GitHubOwners.SafetyCone,
-                name);
-        }
-
-        public async Task<bool> RepositoryExists(string owner, string name)
-        {
-            var output = await this.InClientContext(async gitHubClient =>
-            {
-                var searchRequest = new SearchRepositoriesRequest(name)
-                {
-                    User = owner,
-                };
-
-                var searchResult = await gitHubClient.Search.SearchRepo(searchRequest);
-
-                var exists = searchResult.Items
-                    .Where(x => x.Name == name)
-                    .Any();
-
-                return exists;
-            });
-
-            return output;
-        }
-
-        public Task<bool> RepositoryExists_SafetyCone(string name)
-        {
-            return this.RepositoryExists(
-                Instances.GitHubOwners.SafetyCone,
-                name);
-        }
-
-        public async Task VerifyRepositoryDoesNotExist(string owner, string name)
-        {
             var repositoryExists = await this.RepositoryExists(owner, name);
-            if(repositoryExists)
-            {
-                var ownedRepositoryName = Instances.RepositoryNameOperator.GetOwnedRepositoryName(owner, name);
 
-                throw new Exception($"{ownedRepositoryName}: Repository exists.");
+            var ownedRepositoryName = Instances.RepositoryNameOperator.GetOwnedRepositoryName(owner, name);
+
+            var result = T0146.Instances.ResultOperator.Result("Verify GitHub repository does not exist");
+
+            if (repositoryExists)
+            {
+                result.WithFailure($"GitHub repository already exists: {ownedRepositoryName}.");
             }
+            else
+            {
+                result.WithSuccess($"GitHub repository does not exist: {ownedRepositoryName}.");
+            }
+
+            return result;
         }
     }
 }

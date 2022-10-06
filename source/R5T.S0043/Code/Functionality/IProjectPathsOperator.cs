@@ -50,35 +50,58 @@ namespace R5T.S0043
 			return instancesFilePath;
 		}
 
+		public string GetProjectFilePath(
+			string projectDirectoryPath,
+			string projectName)
+        {
+			var projectFileName = Instances.FileNameOperator.GetProjectFileName_FromProjectName(projectName);
+
+			var projectFilePath = F0002.Instances.PathOperator.GetFilePath(
+				projectDirectoryPath,
+				projectFileName);
+
+			return projectFilePath;
+        }
+
 		public string GetProjectDirectoryPath(string projectFilePath)
         {
 			var projectDirectoryPath = Instances.PathOperator.GetParentDirectoryPath_ForFile(projectFilePath);
 			return projectDirectoryPath;
 		}
 
-		public string GetProjectFileName(string projectFilePath)
+		public string GetProjectDirectoryPath_FromSolutionDirectoryPath(
+			string solutionDirectoryPath,
+			string projectName)
         {
-			var projectFileName = projectFilePath.Split('\\').Last();
-			return projectFileName;
-		}
+			var projectDirectoryName = Instances.DirectoryNameOperator.GetProjectDirectoryName_FromProjectName(projectName);
 
-		public string GetProjectName(string projectFilePath)
-        {
-			var projectFileName = this.GetProjectFileName(projectFilePath);
+			var projectDirectoryPath = Instances.PathOperator.GetDirectoryPath(
+				solutionDirectoryPath,
+				projectDirectoryName);
 
-			var projectName = Instances.FileNameOperator_Base.GetFileNameStem(projectFileName);
-			return projectName;
-		}
+			return projectDirectoryPath;
+        }
 
-		public string GetProjectPlanFilePath(string projectFilePath)
+		public string GetProjectPlanTextFilePath(string projectFilePath)
         {
 			var projectDirectoryPath = this.GetProjectDirectoryPath(projectFilePath);
 
 			var projectPlanFilePath = Instances.PathOperator.GetFilePath(
 				projectDirectoryPath,
-				Instances.FileNames.ProjectPlan);
+				Instances.FileNames.ProjectPlanTextFile);
 
 			return projectPlanFilePath;
         }
+
+		public string GetProjectPlanMarkdownFilePath(string projectFilePath)
+		{
+			var projectDirectoryPath = this.GetProjectDirectoryPath(projectFilePath);
+
+			var projectPlanFilePath = Instances.PathOperator.GetFilePath(
+				projectDirectoryPath,
+				Instances.FileNames.ProjectPlanMarkdownFile);
+
+			return projectPlanFilePath;
+		}
 	}
 }

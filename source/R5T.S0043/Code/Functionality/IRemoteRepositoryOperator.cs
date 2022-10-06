@@ -2,25 +2,22 @@ using System;
 using System.Threading.Tasks;
 
 using R5T.T0132;
+using R5T.T0146;
 
 
 namespace R5T.S0043
 {
 	[FunctionalityMarker]
-	public partial interface IRemoteRepositoryOperator : IFunctionalityMarker
+	public partial interface IRemoteRepositoryOperator : IFunctionalityMarker,
+		F0042.IRemoteRepositoryOperator
 	{
-		public async Task<bool> RepositoryExists(string repositoryOwnerName, string repositoryName)
-        {
-			var output = await Instances.GitHubOperator.RepositoryExists(
+		public Task<Result> VerifyRepositoryDoesNotExist_Result(
+			string repositoryOwnerName,
+			string repositoryName)
+		{
+			return Instances.GitHubOperator.VerifyRepositoryDoesNotExist_Result(
 				repositoryOwnerName,
 				repositoryName);
-
-			return output;
-        }
-
-		public Task VerifyRepositoryDoesNotExist(string repositoryOwnerName, string repositoryName)
-        {
-			return Instances.GitHubOperator.VerifyRepositoryDoesNotExist(repositoryOwnerName, repositoryName);
-        }
+		}
 	}
 }

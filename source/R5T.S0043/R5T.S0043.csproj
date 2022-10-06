@@ -2,11 +2,9 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>1573;1587;1591</NoWarn>
-    <ApplicationIcon />
-    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,16 +13,18 @@
     <ProjectReference Include="..\..\..\R5T.F0019\source\R5T.F0019\R5T.F0019.csproj" />
     <ProjectReference Include="..\..\..\R5T.F0020\source\R5T.F0020\R5T.F0020.csproj" />
     <ProjectReference Include="..\..\..\R5T.F0024\source\R5T.F0024\R5T.F0024.csproj" />
+    <ProjectReference Include="..\..\..\R5T.F0032\source\R5T.F0032\R5T.F0032.csproj" />
+    <ProjectReference Include="..\..\..\R5T.F0033\source\R5T.F0033\R5T.F0033.csproj" />
+    <ProjectReference Include="..\..\..\R5T.F0040\source\R5T.F0040\R5T.F0040.csproj" />
+    <ProjectReference Include="..\..\..\R5T.F0041\source\R5T.F0041\R5T.F0041.csproj" />
+    <ProjectReference Include="..\..\..\R5T.F0042\source\R5T.F0042\R5T.F0042.csproj" />
     <ProjectReference Include="..\..\..\R5T.L0003\source\R5T.L0003\R5T.L0003.csproj" />
     <ProjectReference Include="..\..\..\R5T.L0017\source\R5T.L0017\R5T.L0017.csproj" />
     <ProjectReference Include="..\..\..\R5T.L0019\source\R5T.L0019\R5T.L0019.csproj" />
     <ProjectReference Include="..\..\..\R5T.T0132\source\R5T.T0132\R5T.T0132.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Files\R5T.S0043\gitignore-template.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <ProjectReference Include="..\..\..\R5T.T0142\source\R5T.T0142\R5T.T0142.csproj" />
+    <ProjectReference Include="..\..\..\R5T.T0146\source\R5T.T0146\R5T.T0146.csproj" />
+    <ProjectReference Include="..\R5T.S0043.Library\R5T.S0043.Library.csproj" />
   </ItemGroup>
 
 </Project>

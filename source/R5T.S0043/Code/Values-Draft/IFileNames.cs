@@ -9,9 +9,9 @@ namespace R5T.S0043
 	public partial interface IFileNames : IDraftValuesMarker
 	{
 		public string Documentation => "Documentation.cs";
-		public string GitIgnore => ".gitignore";
 		public string Instances => "Instances.cs";
 		public string Program => "Program.cs";
-		public string ProjectPlan => "Project Plan.txt";
+		public string ProjectPlanTextFile => "Project Plan.txt";
+		public string ProjectPlanMarkdownFile => "Project Plan.md";
 	}
 }

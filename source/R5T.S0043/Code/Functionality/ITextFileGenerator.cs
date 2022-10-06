@@ -9,7 +9,7 @@ namespace R5T.S0043
 	[FunctionalityMarker]
 	public partial interface ITextFileGenerator : IFunctionalityMarker
 	{
-		public void CreateProjectPlan(
+		public void CreateProjectPlanTextFile(
 			string filePath,
 			string projectName,
 			string projectDescription)
@@ -23,6 +23,22 @@ $@"
 				filePath,
 				text);
         }
+
+		public void CreateProjectPlanMarkdownFile(
+			string filePath,
+			string projectName,
+			string projectDescription)
+		{
+			var text =
+$@"
+# {projectName}
+{projectDescription}
+";
+
+			this.WriteText(
+				filePath,
+				text);
+		}
 
 		public void WriteText(
 			string filePath,

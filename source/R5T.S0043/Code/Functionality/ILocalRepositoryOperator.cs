@@ -1,45 +1,49 @@
 using System;
 
 using R5T.T0132;
+using R5T.T0146;
 
 
 namespace R5T.S0043
 {
 	[DraftFunctionalityMarker]
-	public partial interface ILocalRepositoryOperator : IFunctionalityMarker
+	public partial interface ILocalRepositoryOperator : IFunctionalityMarker,
+		F0042.ILocalRepositoryOperator
 	{
-		public bool RepositoryExists(string repositoryOwnerName, string repositoryName)
-        {
+		/// <summary>
+		/// Verifies that the local repository directory does not exist.
+		/// </summary>
+		/// <returns>The local repository directory path.</returns>
+		public Result<string> VerifyRepositoryDoesNotExist_Result(
+			string repositoryOwnerName,
+			string repositoryName)
+		{
 			var repositoryDirectoryPath = Instances.DirectoryPathOperator.GetRepositoryDirectory(
 				repositoryOwnerName,
 				repositoryName);
 
-			var output = this.RepositoryExists(repositoryDirectoryPath);
+			var verifyResult = this.VerifyRepositoryDoesNotExist_Result(repositoryDirectoryPath);
+
+			var output = T0146.Instances.ResultOperator.Result(verifyResult, repositoryDirectoryPath);
 			return output;
 		}
 
-		public bool RepositoryExists(string repositoryDirectoryPath)
-        {
-			var output = Instances.FileSystemOperator.DirectoryExists(repositoryDirectoryPath);
-			return output;
-        }
-
-		public void VerifyRepositoryDoesNotExist(string repositoryOwnerName, string repositoryName)
-        {
-			var repositoryDirectoryPath = Instances.DirectoryPathOperator.GetRepositoryDirectory(
-				repositoryOwnerName,
-				repositoryName);
-
-			this.VerifyRepositoryDoesNotExist(repositoryDirectoryPath);
-        }
-
-		public void VerifyRepositoryDoesNotExist(string repositoryDirectoryPath)
-        {
+		public Result VerifyRepositoryDoesNotExist_Result(string repositoryDirectoryPath)
+		{
 			var directoryExists = Instances.FileSystemOperator.DirectoryExists(repositoryDirectoryPath);
+
+			var result = T0146.Instances.ResultOperator.Result("Verify local repository does not exist");
+
 			if(directoryExists)
             {
-				throw new Exception($"Repository exists. Directory exists: {repositoryDirectoryPath}");
-            }
-        }
+				result.WithFailure($"Local repository directory already exists: {repositoryDirectoryPath}");
+			}
+            else
+            {
+				result.WithSuccess($"Local repository directory does not exist: {repositoryDirectoryPath}");
+			}
+
+			return result;
+		}
 	}
 }

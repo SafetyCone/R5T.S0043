@@ -73,10 +73,10 @@ namespace R5T.S0043
 			string projectName,
 			string projectDefaultNamespaceName)
         {
-			// Create the project plan file.
-			var projectPlanFilePath = Instances.ProjectPathsOperator.GetProjectPlanFilePath(projectFilePath);
+			// Create the project plan Markdown file.
+			var projectPlanFilePath = Instances.ProjectPathsOperator.GetProjectPlanMarkdownFilePath(projectFilePath);
 
-			Instances.TextFileGenerator.CreateProjectPlan(
+			Instances.TextFileGenerator.CreateProjectPlanMarkdownFile(
 				projectPlanFilePath,
 				projectName,
 				projectDescription);
