@@ -30,7 +30,7 @@ namespace R5T.S0043
                 repositoryName);
             
             // Delete local.
-            DirectoryHelper.DeleteDirectoryOkIfNotExists(repositoryDirectoryPath);
+            Instances.FileSystemOperator.DeleteDirectory_OkIfNotExists(repositoryDirectoryPath);
 
             // Delete remote.
             await Instances.GitHubOperator.DeleteRepository(

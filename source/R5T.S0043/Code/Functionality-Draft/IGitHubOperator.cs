@@ -178,7 +178,7 @@ namespace R5T.S0043
         /// Stages, commits, and pushes all changes in a local directory path using the given commit message.
         /// </summary>
         /// <returns>True if any unpushed changes were pushed (there were any changes to push), false if not (there were no unpushed changes to push).</returns>
-        public Result<bool> PushAllChanges(
+        public new Result<bool> PushAllChanges(
             string repositoryLocalDirectoryPath,
             string commitMessage,
             ILogger logger)

@@ -28,13 +28,13 @@ namespace R5T.S0043
 				repositoryOwnerName,
 				repositoryName);
 
-			var ownerDirectoryName = Instances.DirectoryNameOperator.GetRepositoryOwnerDirectoryName(repositoryOwnerName);
+			var ownerDirectoryName = Instances.RepositoryDirectoryNameOperator.GetRepositoryOwnerDirectoryName(repositoryOwnerName);
 
 			var localOwnerRepositoryDirectoryPath = Instances.PathOperator.GetDirectoryPath(
 				Instances.DirectoryPaths.GitHubRepositoriesDirectory,
 				ownerDirectoryName);
 
-			var repositoryDirectoryName = Instances.DirectoryNameOperator.GetRepositoryDirectoryName(repositoryName);
+			var repositoryDirectoryName = Instances.RepositoryDirectoryNameOperator.GetRepositoryDirectoryName(repositoryName);
 
 			var localRepositoryDirectoryPath = Instances.PathOperator.GetDirectoryPath(
 				localOwnerRepositoryDirectoryPath,

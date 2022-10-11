@@ -115,7 +115,7 @@ namespace R5T.S0043
 
 			Instances.Operations.WriteResultAndOpenInNotepadPlusPlus(
 				createNewSolutionFileResult,
-				Instances.FilePaths.ResultOutputFilePath,
+				Instances.FilePaths.ResultOutputJsonFilePath,
 				logger);
         }
 
@@ -173,7 +173,7 @@ namespace R5T.S0043
                 {
 					var repositoryDirectoryPath = solutionIsInRepository.Result;
 
-					Instances.GitHubOperator.PushAllChanges_NoResult(
+					Instances.GitHubOperator_Base.PushAllChanges(
 						repositoryDirectoryPath,
 						Instances.CommitMessages.UpgradeSolutionFileToVS2022,
 						logger);

@@ -185,7 +185,7 @@ namespace R5T.S0043
 			{
 				var repositoryDirectoryPath = projectIsInRepository.Result;
 
-				Instances.GitHubOperator.PushAllChanges_NoResult(
+				Instances.GitHubOperator_Base.PushAllChanges(
 					repositoryDirectoryPath,
 					Instances.CommitMessages.ChangeProjectToNetStandard2_0,
 					logger);
@@ -226,7 +226,7 @@ namespace R5T.S0043
 			{
 				var repositoryDirectoryPath = projectIsInRepository.Result;
 
-				Instances.GitHubOperator.PushAllChanges_NoResult(
+				Instances.GitHubOperator_Base.PushAllChanges(
 					repositoryDirectoryPath,
 					Instances.CommitMessages.ChangeProjectToNetStandard2_1,
 					logger);
@@ -267,7 +267,7 @@ namespace R5T.S0043
 			{
 				var repositoryDirectoryPath = projectIsInRepository.Result;
 
-				Instances.GitHubOperator.PushAllChanges_NoResult(
+				Instances.GitHubOperator_Base.PushAllChanges(
 					repositoryDirectoryPath,
 					Instances.CommitMessages.ChangeProjectToNet6,
 					logger);

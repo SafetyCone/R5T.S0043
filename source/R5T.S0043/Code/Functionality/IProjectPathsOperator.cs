@@ -73,7 +73,7 @@ namespace R5T.S0043
 			string solutionDirectoryPath,
 			string projectName)
         {
-			var projectDirectoryName = Instances.DirectoryNameOperator.GetProjectDirectoryName_FromProjectName(projectName);
+			var projectDirectoryName = Instances.ProjectDirectoryNameOperator.GetProjectDirectoryName_FromProjectName(projectName);
 
 			var projectDirectoryPath = Instances.PathOperator.GetDirectoryPath(
 				solutionDirectoryPath,

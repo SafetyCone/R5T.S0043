@@ -1,4 +1,5 @@
 using System;
+using System.Extensions;
 using System.Threading.Tasks;
 
 using Microsoft.Extensions.Logging;
@@ -34,14 +35,14 @@ namespace R5T.S0043
 
 			/// Library.
 			// Unadjusted library name is just the name.
-			var unadjustedLibraryName = Instances.LibraryOperator.GetUnadjustedLibraryName(name);
+			var unadjustedLibraryName = Instances.LibraryNameOperator.GetUnadjustedLibraryName(name);
 
-			var libraryName = Instances.LibraryOperator.AdjustLibraryName_ForPrivacy(
+			var libraryName = Instances.LibraryNameOperator.AdjustLibraryName_ForPrivacy(
 				unadjustedLibraryName,
 				isPrivate,
 				logger);
 
-			var libraryDescription = Instances.LibraryOperator.GetLibraryDescription(description);
+			var libraryDescription = Instances.LibraryDescriptionOperator.GetLibraryDescription(description);
 
 			/// Repository.
 			var repositoryName = Instances.RepositoryNameOperator.GetRepositoryName_FromLibraryName(libraryName);
@@ -52,7 +53,7 @@ namespace R5T.S0043
 			logger.LogInformation($"Repository name: '{repositoryName}'.");
 
 			// Repository description is just the library description.
-			var repositoryDescription = Instances.RepositoryOperator.Get_RepositoryDescription_FromLibraryDescription(libraryDescription);
+			var repositoryDescription = Instances.RepositoryDescriptionOperator.GetRepositoryDescription_FromLibraryDescription(libraryDescription);
 
 			var repositorySpecification = Instances.RepositoryOperator.Get_RepositorySpecification(
 				owner,
@@ -81,13 +82,13 @@ namespace R5T.S0043
 
 			/// Create.
 			// As of now, we can assume the repository does not exist.
-			var repositoryDirectoryPath = await Instances.RepositoryOperator.CreateNew_NonIdempotent(
+			var repositoryLocations = await Instances.RepositoryOperator.As<F0060.IRepositoryOperator, F0042.IRepositoryOperator>().CreateNew_NonIdempotent(
 				repositorySpecification,
 				logger);
 
 			// Setup repository.
-			var repositorySourceDirectoryPath = Instances.RepositoryOperator.SetupRepository(
-				repositoryDirectoryPath,
+			var repositorySourceDirectoryPath = Instances.RepositoryOperator.As<F0060.IRepositoryOperator, F0042.IRepositoryOperator>().SetupRepository(
+				repositoryLocations.LocalDirectoryPath,
 				logger);
 
 			// Now create the solution and project.
@@ -153,7 +154,7 @@ namespace R5T.S0043
 
 			logger.LogInformation($"Adjusting library name for privacy (is private: {isPrivate})...");
 
-			var libraryName = Instances.LibraryOperator.AdjustLibraryName_ForPrivacy(
+			var libraryName = Instances.LibraryNameOperator.AdjustLibraryName_ForPrivacy(
 				unadjustedLibraryName,
 				isPrivate);
 
@@ -179,9 +180,10 @@ namespace R5T.S0043
 			// Skip creation of local repository if it already exists.
 			logger.LogInformation($"Checking if repository '{repositoryName}' already exists...");
 
-			var localRepositoryAlreadyExists = Instances.LocalRepositoryOperator.RepositoryExists(
+			var localRepositoryAlreadyExists = Instances.LocalRepositoryOperator.As<F0060.ILocalRepositoryOperator, F0042.ILocalRepositoryOperator>().RepositoryExists(
 				owner,
 				repositoryName);
+
 			if(localRepositoryAlreadyExists)
             {
 				logger.LogInformation("Local repository already exists. Skipping local repository cloning.");
@@ -219,7 +221,7 @@ namespace R5T.S0043
 				logger.LogInformation("Cloned repository locally.");
 			}
 
-			var repositoryDirectoryPath = Instances.DirectoryPathOperator.GetRepositoryDirectory(
+			var repositoryDirectoryPath = Instances.RepositoryDirectoryPathOperator.GetRepositoryDirectory(
 				owner,
 				repositoryName);
 
@@ -230,7 +232,7 @@ namespace R5T.S0043
 				logger);
 
 			// Create repository source directory.
-			var repositorySourceDirectoryPath = Instances.RepositoryOperator.Create_SourceDirectory_Idempotent(
+			var repositorySourceDirectoryPath = Instances.RepositoryOperator.As<F0060.IRepositoryOperator, F0042.IRepositoryOperator>().Create_SourceDirectory_Idempotent(
 				repositoryDirectoryPath,
 				logger);
 
@@ -277,7 +279,7 @@ namespace R5T.S0043
 			var scriptProjectNamespaceName = Instances.ProjectNamespacesOperator.GetDefaultNamespaceName_FromProjectName(scriptProjectName);
 
 			// Project directory name is just the project name.
-			var scriptProjectDirectoryName = Instances.DirectoryNameOperator.GetProjectDirectoryName_FromProjectName(scriptProjectName);
+			var scriptProjectDirectoryName = Instances.ProjectDirectoryNameOperator.GetProjectDirectoryName_FromProjectName(scriptProjectName);
 			var scriptProjectDirectoryPath = Instances.PathOperator.GetDirectoryPath(
 				solutionDirectoryPath,
 				scriptProjectDirectoryName);
