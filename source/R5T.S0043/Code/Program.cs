@@ -13,8 +13,8 @@ namespace R5T.S0043
 
             //await Instances.RepositoryOperations.CreateNew_EmptyRepository_NonIdempotent();
             //await Instances.RepositoryOperations.CreateNew_MinimalRepository_NonIdempotent();
-            //await Instances.RepositoryOperations.Delete_Idempotent();
-            await Instances.RepositoryOperations.CreateNew_LibraryRepository();
+            await Instances.RepositoryOperations.Delete_Idempotent();
+            //await Instances.RepositoryOperations.CreateNew_LibraryRepository();
             //await Instances.RepositoryOperations.CreateNew_LibraryOnlyRepository();
             //await Instances.RepositoryOperations.CreateNew_ConsoleRepository();
 
@@ -44,7 +44,7 @@ namespace R5T.S0043
         static Task CreateInstancesFile()
         {
             /// Inputs.
-            var projectFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0024\source\R5T.F0024.T001\R5T.F0024.T001.csproj";
+            var projectFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.E0054.Private\source\R5T.E0054\R5T.E0054.csproj";
 
             /// Run.
             var instancesFilePath = Instances.ProjectPathsOperator.GetInstancesFilePath(projectFilePath);

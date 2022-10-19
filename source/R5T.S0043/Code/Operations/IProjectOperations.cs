@@ -18,7 +18,7 @@ namespace R5T.S0043
 		{
 			var projectFilePaths = new[]
 			{
-				@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.T0064\source\R5T.T0064\R5T.T0064.csproj",
+				@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0028\source\R5T.F0028\R5T.F0028.csproj",
 			};
 
             foreach (var projectFilePath in projectFilePaths)
@@ -65,7 +65,7 @@ namespace R5T.S0043
 			//var description = ; // Get from project plan.
 			//var repositoryUrl = ;// Get from repository.
 
-			Instances.ProjectFileOperator.InProjectFileContext(
+			Instances.ProjectFileOperator.InModifyProjectFileContext(
 				projectFilePath,
 				projectElement =>
 				{
@@ -171,7 +171,7 @@ namespace R5T.S0043
 				backupProjectFilePath);
 
 			// Now modify the project file.
-			F0020.Instances.ProjectFileOperator.InProjectFileContext(
+			F0020.Instances.ProjectFileOperator.InModifyProjectFileContext(
 				projectFilePath,
 				projectElement =>
 				{
@@ -212,7 +212,7 @@ namespace R5T.S0043
 				backupProjectFilePath);
 
 			// Now modify the project file.
-			F0020.Instances.ProjectFileOperator.InProjectFileContext(
+			F0020.Instances.ProjectFileOperator.InModifyProjectFileContext(
 				projectFilePath,
 				projectElement =>
 				{
@@ -253,7 +253,7 @@ namespace R5T.S0043
 				backupProjectFilePath);
 
 			// Now modify the project file.
-			F0020.Instances.ProjectFileOperator.InProjectFileContext(
+			F0020.Instances.ProjectFileOperator.InModifyProjectFileContext(
 				projectFilePath,
 				projectElement =>
 				{

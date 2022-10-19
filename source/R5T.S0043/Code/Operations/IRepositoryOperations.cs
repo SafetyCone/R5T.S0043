@@ -119,14 +119,14 @@ namespace R5T.S0043
 		{
 			/// Inputs.
 			var name =
-                //"R5T.W1001"
-                Instances.RepositoryNames.TestRepository
+                "R5T.W0001"
+                //Instances.RepositoryNames.TestRepository
                 ;
 			var description =
-                //"A private first repo for creating a web application."
-                Instances.RepositoryDescriptions.ForTestRepository
-                ;
-			var isPrivate = true;
+				"An example web application using the web application builder configurer functionality."
+				//Instances.RepositoryDescriptions.ForTestRepository
+				;
+			var isPrivate = false;
 
 			var owner =
 				Instances.GitHubOwners.SafetyCone
@@ -231,10 +231,10 @@ namespace R5T.S0043
 			/// Inputs.
 			var owner = Instances.GitHubOwners.SafetyCone;
 			var name =
-                Instances.RepositoryNameOperator.GetRepositoryName(owner, "F0061")
+                Instances.RepositoryNameOperator.GetRepositoryName(owner, "F0063")
                 //Instances.RepositoryNames.TestRepository
                 ;
-			var description = "Toolbox of useful operations.";
+			var description = "Solution operations functionality.";
 			var isPrivate = false;
 
 
@@ -364,7 +364,7 @@ namespace R5T.S0043
 		{
 			/// Inputs.
 			var name =
-                //"R5T.F0051"
+                //"Testing123"
                 Instances.RepositoryNames.TestRepository
                 ;
 			var owner =
