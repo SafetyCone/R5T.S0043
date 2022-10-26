@@ -85,7 +85,7 @@ namespace R5T.S0043
         public static ISolutionOperator SolutionOperator { get; } = S0043.SolutionOperator.Instance;
         public static ISolutionPathsOperator SolutionPathsOperator { get; } = S0043.SolutionPathsOperator.Instance;
         public static ISolutionTestOperations SolutionTestOperations { get; } = S0043.SolutionTestOperations.Instance;
-        public static IStreamReaderOperator StreamReaderOperator { get; } = F0002.StreamReaderOperator.Instance;
+        public static IStreamReaderOperator StreamReaderOperator { get; } = F0000.StreamReaderOperator.Instance;
         public static IStrings Strings { get; } = S0043.Strings.Instance;
         public static ITextFileGenerator TextFileGenerator { get; } = S0043.TextFileGenerator.Instance;
         public static ITemplateFilePaths TemplateFilePaths { get; } = F0042.TemplateFilePaths.Instance;

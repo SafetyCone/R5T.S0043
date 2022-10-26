@@ -63,9 +63,9 @@ namespace R5T.S0043
 		public void AddNew_LibraryProjectToSolution()
 		{
 			/// Inputs.
-			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0064\source\R5T.F0064.Construction.sln";
-			var projectName = "R5T.F0064.F002";
-			var projectDescription = "Example Type values.";
+			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0063\source\R5T.F0063.sln";
+			var projectName = "R5T.F0063.F001";
+			var projectDescription = "Dependencies solution folder functionality.";
 
 			/// Run.
 			// Create the project file.
