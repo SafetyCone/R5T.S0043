@@ -35,9 +35,9 @@ namespace R5T.S0043
 		public void AddNew_ConsoleProjectToSolution()
 		{
 			/// Inputs.
-			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0038\source\R5T.F0038.Construction.sln";
-			var projectName = "R5T.F0038.Construction";
-			var projectDescription = "Construction project for NuGet functionality library.";
+			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0027\source\R5T.F0027.Construction.sln";
+			var projectName = "R5T.F0027.Construction";
+			var projectDescription = "Construction project for the dotnet executable functionality library.";
 
 			/// Run.
 			// Create the project file.
@@ -63,9 +63,9 @@ namespace R5T.S0043
 		public void AddNew_LibraryProjectToSolution()
 		{
 			/// Inputs.
-			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0063\source\R5T.F0063.sln";
-			var projectName = "R5T.F0063.F001";
-			var projectDescription = "Dependencies solution folder functionality.";
+			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0038\source\R5T.F0038.Construction.sln";
+			var projectName = "R5T.F0038.F001";
+			var projectDescription = "NuGet SDK related functionality.";
 
 			/// Run.
 			// Create the project file.
@@ -125,7 +125,7 @@ namespace R5T.S0043
 			var pushChangesToRemote = false;
 			var solutionFilePaths = new[]
 			{
-				@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.S0042\source\R5T.S0042.sln",
+				@"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0027\source\R5T.F0027.Construction.sln",
 			};
 
 
