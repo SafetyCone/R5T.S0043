@@ -69,7 +69,7 @@ namespace R5T.S0043
         public static IRemoteRepositoryOperator RemoteRepositoryOperator { get; } = S0043.RemoteRepositoryOperator.Instance;
         public static IRepositoryDescriptionOperator RepositoryDescriptionOperator { get; } = F0046.RepositoryDescriptionOperator.Instance;
         public static IRepositoryDescriptions RepositoryDescriptions { get; } = Z0014.RepositoryDescriptions.Instance;
-        public static IRepositoryNameOperator RepositoryNameOperator { get; } = F0046.RepositoryNameOperator.Instance;
+        public static F0046.IRepositoryNameOperator RepositoryNameOperator { get; } = F0046.RepositoryNameOperator.Instance;
         public static IRepositoryNames RepositoryNames { get; } = Z0014.RepositoryNames.Instance;
         public static IRepositoryOperations RepositoryOperations { get; } = S0043.RepositoryGeneration.Instance;
         public static F0060.IRepositoryOperator RepositoryOperator { get; } = F0060.RepositoryOperator.Instance;

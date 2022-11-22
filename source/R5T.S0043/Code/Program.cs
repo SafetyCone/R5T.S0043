@@ -13,8 +13,8 @@ namespace R5T.S0043
 
             //await Instances.RepositoryOperations.CreateNew_EmptyRepository_NonIdempotent();
             //await Instances.RepositoryOperations.CreateNew_MinimalRepository_NonIdempotent();
-            await Instances.RepositoryOperations.Delete_Idempotent();
-            //await Instances.RepositoryOperations.CreateNew_LibraryRepository();
+            //await Instances.RepositoryOperations.Delete_Idempotent();
+            await Instances.RepositoryOperations.CreateNew_LibraryRepository();
             //await Instances.RepositoryOperations.CreateNew_LibraryOnlyRepository();
             //await Instances.RepositoryOperations.CreateNew_ConsoleRepository();
 
