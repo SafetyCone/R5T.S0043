@@ -44,7 +44,7 @@ namespace R5T.S0043
         static Task CreateInstancesFile()
         {
             /// Inputs.
-            var projectFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0083\source\R5T.F0083.R001\R5T.F0083.R001.csproj";
+            var projectFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.S0007.Private\source\R5T.S0007\R5T.S0007.csproj";
 
             /// Run.
             var instancesFilePath = Instances.ProjectPathsOperator.GetInstancesFilePath(projectFilePath);

@@ -87,7 +87,7 @@ namespace R5T.S0043
 				logger);
 
 			// Setup repository.
-			var repositorySourceDirectoryPath = Instances.RepositoryOperator.As<F0060.IRepositoryOperator, F0042.IRepositoryOperator>().SetupRepository(
+			var repositoryResult = Instances.RepositoryOperator.As<F0060.IRepositoryOperator, F0042.IRepositoryOperator>().SetupRepository(
 				repositoryLocations.LocalDirectoryPath,
 				logger);
 
@@ -96,7 +96,7 @@ namespace R5T.S0043
 			var solutionName = Instances.SolutionNameOperator.AdjustSolutionName_ForPrivacy(unadjustedSolutionName, isPrivate);
 
 			var solutionFilePath = Instances.SolutionOperator.Create_Solution_SourceDirectoryPath(
-				repositorySourceDirectoryPath,
+                repositoryResult.SourceDirectoryPath,
 				solutionName,
 				logger);
 
@@ -221,7 +221,7 @@ namespace R5T.S0043
 				logger.LogInformation("Cloned repository locally.");
 			}
 
-			var repositoryDirectoryPath = Instances.RepositoryDirectoryPathOperator.GetRepositoryDirectory(
+			var repositoryDirectoryPath = Instances.RepositoryDirectoryPathOperator.GetRepositoryDirectoryPath(
 				owner,
 				repositoryName);
 

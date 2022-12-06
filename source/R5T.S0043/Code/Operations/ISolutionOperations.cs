@@ -63,9 +63,9 @@ namespace R5T.S0043
 		public void AddNew_LibraryProjectToSolution()
 		{
 			/// Inputs.
-			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0038\source\R5T.F0038.Construction.sln";
-			var projectName = "R5T.F0038.F001";
-			var projectDescription = "NuGet SDK related functionality.";
+			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0042\source\R5T.F0042.Construction.sln";
+			var projectName = "R5T.F0042.F002";
+			var projectDescription = "Repository related files creation functionality.";
 
 			/// Run.
 			// Create the project file.
