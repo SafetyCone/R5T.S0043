@@ -22,7 +22,7 @@ namespace R5T.S0043
 				projectDirectoryPath,
 				projectName);
 
-			F0020.Instances.ProjectFileOperator.Create(
+			F0020.Instances.ProjectFileOperator.CreateProjectFile_Synchronous(
 				projectFilePath,
 				F0020.Instances.ProjectXmlOperations.EmptyToStandard(
 					targetFrameworkMonikerString,

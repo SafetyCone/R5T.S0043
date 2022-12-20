@@ -8,12 +8,12 @@ namespace R5T.S0043
     {
         static async Task Main()
         {
-            await Program.CreateInstancesFile();
+            //await Program.CreateInstancesFile();
             //Program.CreateProgramFile();
 
             //await Instances.RepositoryOperations.CreateNew_EmptyRepository_NonIdempotent();
             //await Instances.RepositoryOperations.CreateNew_MinimalRepository_NonIdempotent();
-            //await Instances.RepositoryOperations.Delete_Idempotent();
+            await Instances.RepositoryOperations.Delete_Idempotent();
             //await Instances.RepositoryOperations.CreateNew_LibraryRepository();
             //await Instances.RepositoryOperations.CreateNew_LibraryOnlyRepository();
             //await Instances.RepositoryOperations.CreateNew_ConsoleRepository();
@@ -41,6 +41,7 @@ namespace R5T.S0043
 
 #pragma warning disable IDE0051 // Remove unused private members
 
+        [Obsolete("Use Ithaca (R5T.C0003) project functionality \"Add Instances\".")]
         static Task CreateInstancesFile()
         {
             /// Inputs.
