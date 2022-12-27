@@ -13,12 +13,12 @@ namespace R5T.S0043
 
             //await Instances.RepositoryOperations.CreateNew_EmptyRepository_NonIdempotent();
             //await Instances.RepositoryOperations.CreateNew_MinimalRepository_NonIdempotent();
-            await Instances.RepositoryOperations.Delete_Idempotent();
+            //await Instances.RepositoryOperations.Delete_Idempotent();
             //await Instances.RepositoryOperations.CreateNew_LibraryRepository();
             //await Instances.RepositoryOperations.CreateNew_LibraryOnlyRepository();
             //await Instances.RepositoryOperations.CreateNew_ConsoleRepository();
 
-            //Instances.SolutionOperations.AddNew_LibraryProjectToSolution();
+            Instances.SolutionOperations.AddNew_LibraryProjectToSolution();
             //Instances.SolutionOperations.AddNew_ConsoleProjectToSolution();
             //Instances.SolutionOperations.Add_DependencyProjectReferenceToSolution();
             //Instances.SolutionOperations.CreateNewSolutionFile();

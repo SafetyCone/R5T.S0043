@@ -63,9 +63,9 @@ namespace R5T.S0043
 		public void AddNew_LibraryProjectToSolution()
 		{
 			/// Inputs.
-			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0083\source\R5T.F0083.sln";
-			var projectName = "R5T.F0083.Z000";
-			var projectDescription = "Copyable files for code file generation.";
+			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.S0061\source\R5T.S0061.sln";
+			var projectName = "R5T.S0061.Z001";
+			var projectDescription = "Values for Fresno (R5T.S0061) script.";
 
 			/// Run.
 			// Create the project file.

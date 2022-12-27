@@ -53,7 +53,7 @@ namespace R5T.S0043
 			};
 			var company = "Rivet";
 			var copyrightHolder = company;
-			var copyrightText = $"Copyright (c) {copyrightHolder} {F0000.Instances.NowOperator.GetNowLocal().Year}";
+			var copyrightText = $"Copyright (c) {copyrightHolder} {F0000.Instances.NowOperator.GetNow_Local().Year}";
 			//var packageReadmeFileRelativePath = "Project Plan.md";
 			var requireLicenseAcceptance = true;
 
@@ -65,7 +65,7 @@ namespace R5T.S0043
 			//var description = ; // Get from project plan.
 			//var repositoryUrl = ;// Get from repository.
 
-			Instances.ProjectFileOperator.InModifyProjectFileContext(
+			Instances.ProjectFileOperator.InModifyProjectFileContext_Synchronous(
 				projectFilePath,
 				projectElement =>
 				{
@@ -171,7 +171,7 @@ namespace R5T.S0043
 				backupProjectFilePath);
 
 			// Now modify the project file.
-			F0020.Instances.ProjectFileOperator.InModifyProjectFileContext(
+			F0020.Instances.ProjectFileOperator.InModifyProjectFileContext_Synchronous(
 				projectFilePath,
 				projectElement =>
 				{
@@ -212,7 +212,7 @@ namespace R5T.S0043
 				backupProjectFilePath);
 
 			// Now modify the project file.
-			F0020.Instances.ProjectFileOperator.InModifyProjectFileContext(
+			F0020.Instances.ProjectFileOperator.InModifyProjectFileContext_Synchronous(
 				projectFilePath,
 				projectElement =>
 				{
@@ -253,7 +253,7 @@ namespace R5T.S0043
 				backupProjectFilePath);
 
 			// Now modify the project file.
-			F0020.Instances.ProjectFileOperator.InModifyProjectFileContext(
+			F0020.Instances.ProjectFileOperator.InModifyProjectFileContext_Synchronous(
 				projectFilePath,
 				projectElement =>
 				{
