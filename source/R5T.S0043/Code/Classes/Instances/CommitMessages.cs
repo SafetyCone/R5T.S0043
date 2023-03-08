@@ -3,7 +3,8 @@ using System;
 
 namespace R5T.S0043
 {
-	public class CommitMessages : ICommitMessages
+    [Obsolete("See R5T.Z0036.ICommitMessages.")]
+    public class CommitMessages : ICommitMessages
 	{
 		#region Infrastructure
 
