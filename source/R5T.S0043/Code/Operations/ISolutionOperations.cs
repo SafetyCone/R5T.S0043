@@ -35,9 +35,9 @@ namespace R5T.S0043
 		public void AddNew_ConsoleProjectToSolution()
 		{
 			/// Inputs.
-			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.S0061\source\R5T.S0061.sln";
-			var projectName = "R5T.S0061.F001";
-			var projectDescription = "Miscellaneous scripts project for the main Fresno (functionality survey) script.";
+			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.S0063.Private\source\R5T.S0063.S000.Private.sln";
+			var projectName = "R5T.S0063.S000";
+			var projectDescription = "Miscellaneous scripts project for the R5T.S0063 Fresno (functionality survey) script.";
 
 			/// Run.
 			// Create the project file.
@@ -63,9 +63,9 @@ namespace R5T.S0043
 		public void AddNew_LibraryProjectToSolution()
 		{
 			/// Inputs.
-			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.S0061\source\R5T.S0061.sln";
-			var projectName = "R5T.S0061.F001";
-			var projectDescription = "Functionality library for the Fresno script.";
+			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0099\source\R5T.F0099.sln";
+			var projectName = "R5T.F0099.T000";
+			var projectDescription = "Types library for the XML documentation operator functionality library.";
 
 			/// Run.
 			// Create the project file.
