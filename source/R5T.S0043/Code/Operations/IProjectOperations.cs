@@ -187,7 +187,7 @@ namespace R5T.S0043
 
 				Instances.GitHubOperator_Base.PushAllChanges(
 					repositoryDirectoryPath,
-					Instances.CommitMessages.ChangeProjectToNetStandard2_0,
+					Instances.CommitMessages.ChangeProjectToNetStandard2_0.Value,
 					logger);
 			}
 		}
@@ -228,7 +228,7 @@ namespace R5T.S0043
 
 				Instances.GitHubOperator_Base.PushAllChanges(
 					repositoryDirectoryPath,
-					Instances.CommitMessages.ChangeProjectToNetStandard2_1,
+					Instances.CommitMessages.ChangeProjectToNetStandard2_1.Value,
 					logger);
 			}
 		}
@@ -269,7 +269,7 @@ namespace R5T.S0043
 
 				Instances.GitHubOperator_Base.PushAllChanges(
 					repositoryDirectoryPath,
-					Instances.CommitMessages.ChangeProjectToNet6,
+					Instances.CommitMessages.ChangeProjectToNet6.Value,
 					logger);
 			}
 		}

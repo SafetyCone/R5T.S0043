@@ -175,7 +175,7 @@ namespace R5T.S0043
 
 					Instances.GitHubOperator_Base.PushAllChanges(
 						repositoryDirectoryPath,
-						Instances.CommitMessages.UpgradeSolutionFileToVS2022,
+						Instances.CommitMessages.UpgradeSolutionFileToVS2022.Value,
 						logger);
 				}
 			}
