@@ -35,9 +35,9 @@ namespace R5T.S0043
 		public void AddNew_ConsoleProjectToSolution()
 		{
 			/// Inputs.
-			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.S0063.Private\source\R5T.S0063.S000.Private.sln";
-			var projectName = "R5T.S0063.S000";
-			var projectDescription = "Miscellaneous scripts project for the R5T.S0063 Fresno (functionality survey) script.";
+			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0124\source\R5T.F0124.Q000.sln";
+			var projectName = "R5T.F0124.Q000";
+			var projectDescription = "Explorations, experiments, and demonstrations for the R5T.F0124 .NET Standard 2.1 base functionality library.";
 
 			/// Run.
 			// Create the project file.
