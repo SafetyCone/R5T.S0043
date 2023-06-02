@@ -19,7 +19,7 @@ namespace R5T.S0043
             //await Instances.RepositoryOperations.CreateNew_ConsoleRepository();
 
             //Instances.SolutionOperations.AddNew_LibraryProjectToSolution();
-            //Instances.SolutionOperations.AddNew_ConsoleProjectToSolution();
+            Instances.SolutionOperations.AddNew_ConsoleProjectToSolution();
             //Instances.SolutionOperations.Add_DependencyProjectReferenceToSolution();
             //Instances.SolutionOperations.CreateNewSolutionFile();
             //Instances.SolutionOperations.UpgradeSolutionFiles();

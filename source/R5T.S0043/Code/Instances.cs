@@ -51,7 +51,7 @@ namespace R5T.S0043
         public static Z0014.IRepositoryDescriptions RepositoryDescriptions => Z0014.RepositoryDescriptions.Instance;
         public static F0046.IRepositoryNameOperator RepositoryNameOperator => F0046.RepositoryNameOperator.Instance;
         public static Z0014.IRepositoryNames RepositoryNames => Z0014.RepositoryNames.Instance;
-        public static IRepositoryOperations RepositoryGeneration => S0043.RepositoryGeneration.Instance;
+        public static IRepositoryOperations RepositoryOperations => S0043.RepositoryGeneration.Instance;
         public static F0060.IRepositoryOperator RepositoryOperator => F0060.RepositoryOperator.Instance;
         public static F0042.IRepositoryPathsOperator RepositoryPathsOperator => F0042.RepositoryPathsOperator.Instance;
         public static IRepositoryTestOperations RepositoryTestOperations => S0043.RepositoryTestOperations.Instance;

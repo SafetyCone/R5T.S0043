@@ -35,9 +35,9 @@ namespace R5T.S0043
 		public void AddNew_ConsoleProjectToSolution()
 		{
 			/// Inputs.
-			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.F0124\source\R5T.F0124.Q000.sln";
-			var projectName = "R5T.F0124.Q000";
-			var projectDescription = "Explorations, experiments, and demonstrations for the R5T.F0124 .NET Standard 2.1 base functionality library.";
+			var solutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.O0007\source\R5T.O0007.Q000.sln";
+			var projectName = "R5T.O0007.Q000";
+			var projectDescription = "Demonstrations for project description operator and operations functionality.";
 
 			/// Run.
 			// Create the project file.
