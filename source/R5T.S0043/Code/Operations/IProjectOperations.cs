@@ -53,7 +53,7 @@ namespace R5T.S0043
 			};
 			var company = "Rivet";
 			var copyrightHolder = company;
-			var copyrightText = $"Copyright (c) {copyrightHolder} {F0000.Instances.NowOperator.GetNow_Local().Year}";
+			var copyrightText = $"Copyright (c) {copyrightHolder} {F0000.Instances.NowOperator.Get_Now_Local().Year}";
 			//var packageReadmeFileRelativePath = "Project Plan.md";
 			var requireLicenseAcceptance = true;
 
@@ -166,7 +166,7 @@ namespace R5T.S0043
 			// Save a copy.
 			var backupProjectFilePath = Instances.FilePathOperator.GetBackupCopyFilePath(projectFilePath);
 
-			F0000.Instances.FileSystemOperator.CopyFile(
+			F0000.Instances.FileSystemOperator.Copy_File(
 				projectFilePath,
 				backupProjectFilePath);
 
@@ -207,7 +207,7 @@ namespace R5T.S0043
 			// Save a copy.
 			var backupProjectFilePath = Instances.FilePathOperator.GetBackupCopyFilePath(projectFilePath);
 
-			F0000.Instances.FileSystemOperator.CopyFile(
+			F0000.Instances.FileSystemOperator.Copy_File(
 				projectFilePath,
 				backupProjectFilePath);
 
@@ -248,7 +248,7 @@ namespace R5T.S0043
 			// Save a copy.
 			var backupProjectFilePath = Instances.FilePathOperator.GetBackupCopyFilePath(projectFilePath);
 
-			F0000.Instances.FileSystemOperator.CopyFile(
+			F0000.Instances.FileSystemOperator.Copy_File(
 				projectFilePath,
 				backupProjectFilePath);
 

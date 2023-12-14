@@ -19,7 +19,7 @@ namespace R5T.S0043
 			// First create a copy of the solution file (in case solution functionality does not work).
 			var modifiedSolutionFilePath = @"C:\Code\DEV\Git\GitHub\SafetyCone\R5T.S0043\source\R5T.S0043-Copy.sln";
 
-			Instances.FileSystemOperator.CopyFile(
+			Instances.FileSystemOperator.Copy_File(
 				originalSolutionFilePath,
 				modifiedSolutionFilePath);
 

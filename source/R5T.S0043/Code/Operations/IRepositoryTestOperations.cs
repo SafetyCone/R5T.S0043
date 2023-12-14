@@ -254,7 +254,7 @@ namespace R5T.S0043
 			// Create script solution.
 			logger.LogInformation("Checking if script solution file exists...");
 
-			var scriptSolutionFileExists = Instances.FileSystemOperator.FileExists(scriptSolutionFilePath);
+			var scriptSolutionFileExists = Instances.FileSystemOperator.Exists_File(scriptSolutionFilePath);
 			if (scriptSolutionFileExists)
 			{
 				logger.LogInformation($"Script solution file exists.{Environment.NewLine}\t{scriptSolutionFilePath}");
@@ -291,7 +291,7 @@ namespace R5T.S0043
 
 			logger.LogInformation("Checking if script executable console project file exists...");
 
-			var scriptProjectFileExists = Instances.FileSystemOperator.FileExists(scriptProjectFilePath);
+			var scriptProjectFileExists = Instances.FileSystemOperator.Exists_File(scriptProjectFilePath);
 			if (scriptProjectFileExists)
 			{
 				logger.LogInformation($"Script executable console project file exists.{Environment.NewLine}\t{scriptProjectFilePath}");
@@ -332,7 +332,7 @@ namespace R5T.S0043
 			// Create project plan file.
 			var projectPlanFilePath = Instances.PathOperator.GetFilePath(scriptProjectDirectoryPath, Instances.FileNames.ProjectPlanTextFile);
 
-			var projectPlanFileExists = Instances.FileSystemOperator.FileExists(projectPlanFilePath);
+			var projectPlanFileExists = Instances.FileSystemOperator.Exists_File(projectPlanFilePath);
 			if(projectPlanFileExists)
             {
 				logger.LogInformation("Project plan file already exists.");
@@ -354,14 +354,14 @@ namespace R5T.S0043
 				scriptProjectDirectoryPath,
 				Instances.DirectoryNames.Code);
 
-			Instances.FileSystemOperator.CreateDirectory_OkIfAlreadyExists(codeDirectoryPath);
+			Instances.FileSystemOperator.Create_Directory_OkIfAlreadyExists(codeDirectoryPath);
 
 			// Create program file.
 			var programFilePath = Instances.PathOperator.GetFilePath(
 				codeDirectoryPath,
 				Instances.FileNames.Program);
 
-			var programFileExists = Instances.FileSystemOperator.FileExists(programFilePath);
+			var programFileExists = Instances.FileSystemOperator.Exists_File(programFilePath);
 			if(programFileExists)
             {
 				logger.LogInformation("Program file exists.");
@@ -380,7 +380,7 @@ namespace R5T.S0043
 			// Create the documentation file.
 			var documentationFilePath = Instances.ProjectPathsOperator.GetDocumentationFilePath(scriptProjectFilePath);
 
-			var documentationFileExists = Instances.FileSystemOperator.FileExists(documentationFilePath);
+			var documentationFileExists = Instances.FileSystemOperator.Exists_File(documentationFilePath);
 			if(documentationFileExists)
             {
 				logger.LogInformation("Documentation file exists.");

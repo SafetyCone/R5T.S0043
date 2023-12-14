@@ -12,7 +12,7 @@ namespace R5T.S0043
 	{
 		public Result<bool> FileExists_Result(string filePath)
 		{
-			var fileExists = F0000.Instances.FileSystemOperator.FileExists(filePath);
+			var fileExists = F0000.Instances.FileSystemOperator.Exists_File(filePath);
 
 			var successMessage = fileExists
 				? $"File exists: {filePath}"

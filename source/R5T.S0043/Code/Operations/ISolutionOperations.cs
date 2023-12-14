@@ -22,7 +22,7 @@ namespace R5T.S0043
 			// First create a backup copy of the solution file (in case solution functionality does not work).
 			var backupSolutionFilePath = Instances.FilePathOperator.GetBackupCopyFilePath(solutionFilePath);
 
-			Instances.FileSystemOperator.CopyFile(
+			Instances.FileSystemOperator.Copy_File(
 				solutionFilePath,
 				backupSolutionFilePath);
 
@@ -50,7 +50,7 @@ namespace R5T.S0043
 			// First create a backup copy of the solution file (in case solution functionality does not work).
 			var backupSolutionFilePath = Instances.FilePathOperator.GetBackupCopyFilePath(solutionFilePath);
 
-			Instances.FileSystemOperator.CopyFile(
+			Instances.FileSystemOperator.Copy_File(
 				solutionFilePath,
 				backupSolutionFilePath);
 
@@ -81,7 +81,7 @@ namespace R5T.S0043
 			// First create a backup copy of the solution file (in case solution functionality does not work).
 			var backupSolutionFilePath = Instances.FilePathOperator.GetBackupCopyFilePath(solutionFilePath);
 
-			Instances.FileSystemOperator.CopyFile(
+			Instances.FileSystemOperator.Copy_File(
 				solutionFilePath,
 				backupSolutionFilePath);
 
@@ -151,7 +151,7 @@ namespace R5T.S0043
 					solutionFilePath,
 					"_VS2019");
 
-				F0000.Instances.FileSystemOperator.CopyFile(
+				F0000.Instances.FileSystemOperator.Copy_File(
 					solutionFilePath,
 					vs2019SolutionFilePath);
 
