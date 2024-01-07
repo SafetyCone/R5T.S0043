@@ -16,10 +16,10 @@ namespace R5T.S0043
             //await Instances.RepositoryOperations.Delete_Idempotent();
             //await Instances.RepositoryOperations.CreateNew_LibraryRepository();
             //await Instances.RepositoryOperations.CreateNew_LibraryOnlyRepository();
-            //await Instances.RepositoryOperations.CreateNew_ConsoleRepository();
+            await Instances.RepositoryOperations.CreateNew_ConsoleRepository();
 
             //Instances.SolutionOperations.AddNew_LibraryProjectToSolution();
-            Instances.SolutionOperations.AddNew_ConsoleProjectToSolution();
+            //Instances.SolutionOperations.AddNew_ConsoleProjectToSolution();
             //Instances.SolutionOperations.Add_DependencyProjectReferenceToSolution();
             //Instances.SolutionOperations.CreateNewSolutionFile();
             //Instances.SolutionOperations.UpgradeSolutionFiles();
