@@ -16,7 +16,7 @@ namespace R5T.S0043
 			string outputTypeString)
 		{
 			// Ensure the project directory exists.
-			F0000.Instances.FileSystemOperator.EnsureDirectoryExists(projectDirectoryPath);
+			F0000.Instances.FileSystemOperator.Ensure_DirectoryExists(projectDirectoryPath);
 
 			var projectFilePath = Instances.ProjectPathsOperator.GetProjectFilePath(
 				projectDirectoryPath,
