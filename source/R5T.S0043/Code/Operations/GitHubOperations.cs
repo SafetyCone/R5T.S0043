@@ -25,12 +25,12 @@ namespace R5T.S0043
         {
             var repositoryName = "Test123";
 
-            var repositoryDirectoryPath = Instances.PathOperator.GetDirectoryPath(
+            var repositoryDirectoryPath = Instances.PathOperator.Get_DirectoryPath(
                 Instances.DirectoryPaths.SafetyConeRepositoriesDirectory,
                 repositoryName);
             
             // Delete local.
-            Instances.FileSystemOperator.DeleteDirectory_OkIfNotExists(repositoryDirectoryPath);
+            Instances.FileSystemOperator.Delete_Directory_OkIfNotExists(repositoryDirectoryPath);
 
             // Delete remote.
             await Instances.GitHubOperator.DeleteRepository(

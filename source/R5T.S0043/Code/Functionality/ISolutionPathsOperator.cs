@@ -14,7 +14,7 @@ namespace R5T.S0043
         {
 			var solutionFileName = Instances.FileNameOperator.GetSolutionFileName_FromSolutionName(solutionName);
 
-			var solutionFilePath = Instances.PathOperator.GetFilePath(
+			var solutionFilePath = Instances.PathOperator.Get_FilePath(
 				solutionDirectoryPath,
 				solutionFileName);
 
@@ -30,7 +30,7 @@ namespace R5T.S0043
 
 		public string GetSolutionDirectoryPath_FromSolutionFilePath(string solutionFilePath)
 		{
-			var solutionDirectoryPath = F0002.Instances.PathOperator.GetParentDirectoryPath_ForFile(solutionFilePath);
+			var solutionDirectoryPath = F0002.Instances.PathOperator.Get_ParentDirectoryPath_ForFile(solutionFilePath);
 			return solutionDirectoryPath;
 		}
 	}

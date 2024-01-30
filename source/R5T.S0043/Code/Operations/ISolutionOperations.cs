@@ -2,7 +2,7 @@ using System;
 
 using Microsoft.Extensions.Logging;
 
-using R5T.F0024;
+using R5T.F0024.F001;
 using R5T.T0132;
 
 
@@ -147,7 +147,7 @@ namespace R5T.S0043
 				}
 
 				// Save a copy.
-				var vs2019SolutionFilePath = F0002.Instances.PathOperator.AppendToFileNameStem(
+				var vs2019SolutionFilePath = F0002.Instances.PathOperator.Append_ToFileNameStem(
 					solutionFilePath,
 					"_VS2019");
 

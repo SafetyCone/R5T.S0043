@@ -247,7 +247,7 @@ namespace R5T.S0043
 			var scriptSolutionName = Instances.SolutionNameOperator.AdjustSolutionName_ForPrivacy(unadjustedScriptSolutionName, isPrivate);
 
 			var scriptSolutionFileName = Instances.FileNameOperator.GetSolutionFileName_FromSolutionName(scriptSolutionName);
-			var scriptSolutionFilePath = Instances.PathOperator.GetFilePath(
+			var scriptSolutionFilePath = Instances.PathOperator.Get_FilePath(
 				solutionDirectoryPath,
 				scriptSolutionFileName);
 
@@ -280,12 +280,12 @@ namespace R5T.S0043
 
 			// Project directory name is just the project name.
 			var scriptProjectDirectoryName = Instances.ProjectDirectoryNameOperator.GetProjectDirectoryName_FromProjectName(scriptProjectName);
-			var scriptProjectDirectoryPath = Instances.PathOperator.GetDirectoryPath(
+			var scriptProjectDirectoryPath = Instances.PathOperator.Get_DirectoryPath(
 				solutionDirectoryPath,
 				scriptProjectDirectoryName);
 
 			var scriptProjectFileName = Instances.FileNameOperator.GetProjectFileName_FromProjectName(scriptProjectName);
-			var scriptProjectFilePath = Instances.PathOperator.GetFilePath(
+			var scriptProjectFilePath = Instances.PathOperator.Get_FilePath(
 				scriptProjectDirectoryPath,
 				scriptProjectFileName);
 
@@ -330,7 +330,7 @@ namespace R5T.S0043
 
 			// Setup project.
 			// Create project plan file.
-			var projectPlanFilePath = Instances.PathOperator.GetFilePath(scriptProjectDirectoryPath, Instances.FileNames.ProjectPlanTextFile);
+			var projectPlanFilePath = Instances.PathOperator.Get_FilePath(scriptProjectDirectoryPath, Instances.FileNames.ProjectPlanTextFile);
 
 			var projectPlanFileExists = Instances.FileSystemOperator.Exists_File(projectPlanFilePath);
 			if(projectPlanFileExists)
@@ -350,14 +350,14 @@ namespace R5T.S0043
 			}
 
 			// Create code directory.
-			var codeDirectoryPath = Instances.PathOperator.GetDirectoryPath(
+			var codeDirectoryPath = Instances.PathOperator.Get_DirectoryPath(
 				scriptProjectDirectoryPath,
 				Instances.DirectoryNames.Code);
 
 			Instances.FileSystemOperator.Create_Directory_OkIfAlreadyExists(codeDirectoryPath);
 
 			// Create program file.
-			var programFilePath = Instances.PathOperator.GetFilePath(
+			var programFilePath = Instances.PathOperator.Get_FilePath(
 				codeDirectoryPath,
 				Instances.FileNames.Program);
 
