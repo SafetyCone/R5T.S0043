@@ -86,7 +86,7 @@ namespace R5T.S0043
 
 			var projectDescription = Instances.ProjectOperator.Get_ProjectDescription_FromLibraryDescription(libraryDescriptors.Description);
 
-			var projectNamespaceName = Instances.ProjectNamespacesOperator.GetDefaultNamespaceName_FromProjectName(projectName);
+			var projectNamespaceName = Instances.ProjectNamespacesOperator.Get_DefaultNamespaceName_FromProjectName(projectName);
 
 			var projectFilePath = Instances.ProjectOperator.Create_New(
 				solutionFilePath,
@@ -331,7 +331,7 @@ namespace R5T.S0043
 			var projectDescription = libraryDescription;
 
 			// Namespace name is just the program name.
-			var projectNamespaceName = Instances.ProjectNamespacesOperator.GetDefaultNamespaceName_FromProjectName(projectName);
+			var projectNamespaceName = Instances.ProjectNamespacesOperator.Get_DefaultNamespaceName_FromProjectName(projectName);
 
 			var projectFilePath = Instances.ProjectOperator.Create_New(
 				solutionFilePath,

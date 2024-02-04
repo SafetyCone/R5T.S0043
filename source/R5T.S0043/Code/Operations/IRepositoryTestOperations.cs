@@ -108,7 +108,7 @@ namespace R5T.S0043
 			var projectDescription = libraryDescription;
 
 			// Namespace name is just the program name.
-			var projectNamespaceName = Instances.ProjectNamespacesOperator.GetDefaultNamespaceName_FromProjectName(projectName);
+			var projectNamespaceName = Instances.ProjectNamespacesOperator.Get_DefaultNamespaceName_FromProjectName(projectName);
 
 			var projectFilePath = Instances.ProjectOperator.Create_New(
 				solutionFilePath,
@@ -263,7 +263,7 @@ namespace R5T.S0043
 			{
 				logger.LogInformation($"Script solution file does not exist. Creating script solution file...{Environment.NewLine}\t{scriptSolutionFilePath}");
 
-				Instances.SolutionFileGenerator.CreateNew(scriptSolutionFilePath);
+				Instances.SolutionFileGenerator.New_Synchronous(scriptSolutionFilePath);
 
 				logger.LogInformation($"Created script solution file.{Environment.NewLine}\t{scriptSolutionFilePath}");
 			}
@@ -276,7 +276,7 @@ namespace R5T.S0043
 			var scriptProjectDescription = libraryDescription;
 
 			// Namespace name is just the program name.
-			var scriptProjectNamespaceName = Instances.ProjectNamespacesOperator.GetDefaultNamespaceName_FromProjectName(scriptProjectName);
+			var scriptProjectNamespaceName = Instances.ProjectNamespacesOperator.Get_DefaultNamespaceName_FromProjectName(scriptProjectName);
 
 			// Project directory name is just the project name.
 			var scriptProjectDirectoryName = Instances.ProjectDirectoryNameOperator.GetProjectDirectoryName_FromProjectName(scriptProjectName);

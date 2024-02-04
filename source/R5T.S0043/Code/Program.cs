@@ -49,7 +49,7 @@ namespace R5T.S0043
 
             /// Run.
             var instancesFilePath = Instances.ProjectPathsOperator.GetInstancesFilePath(projectFilePath);
-            var namespaceName = Instances.ProjectNamespacesOperator.GetDefaultNamespaceName(projectFilePath);
+            var namespaceName = Instances.ProjectNamespacesOperator.Get_DefaultNamespaceName(projectFilePath);
 
             Instances.CodeFileGenerator.CreateInstancesFile(
                 instancesFilePath,
@@ -65,7 +65,7 @@ namespace R5T.S0043
 
             /// Run.
             var programFilePath = Instances.ProjectPathsOperator.GetProgramFilePath(projectFilePath);
-            var namespaceName = Instances.ProjectNamespacesOperator.GetDefaultNamespaceName(projectFilePath);
+            var namespaceName = Instances.ProjectNamespacesOperator.Get_DefaultNamespaceName(projectFilePath);
 
             Instances.CodeFileGenerator.CreateProgramFile(
                 programFilePath,

@@ -122,7 +122,7 @@ namespace R5T.S0043
 					projectXmlOperator.SetPackageRequireLicenseAcceptance(projectElement, requireLicenseAcceptance);
 
 					// Repository URL.
-					var repositoryUrl = Instances.GitOperator.GetRepositoryRemoteUrl(projectFilePath);
+					var repositoryUrl = Instances.GitOperator.Get_RepositoryRemoteUrl(projectFilePath);
 					projectXmlOperator.SetRepositoryUrl(projectElement, repositoryUrl);
 
 					// Package tags.
@@ -180,11 +180,12 @@ namespace R5T.S0043
 				});
 
 			// Push change to remote.
-			var projectIsInRepository = Instances.GitOperator.HasRepository(projectFilePath);
+			var projectIsInRepository = Instances.GitOperator.Has_Repository(
+				projectFilePath,
+				out var repositoryDirectoryPath);
+
 			if (pushChangesToRemote && projectIsInRepository)
 			{
-				var repositoryDirectoryPath = projectIsInRepository.Result;
-
 				Instances.GitHubOperator_Base.PushAllChanges(
 					repositoryDirectoryPath,
 					Instances.CommitMessages.ChangeProjectToNetStandard2_0.Value,
@@ -221,11 +222,12 @@ namespace R5T.S0043
 				});
 
 			// Push change to remote.
-			var projectIsInRepository = Instances.GitOperator.HasRepository(projectFilePath);
+			var projectIsInRepository = Instances.GitOperator.Has_Repository(
+				projectFilePath,
+				out var repositoryDirectoryPath);
+
 			if (pushChangesToRemote && projectIsInRepository)
 			{
-				var repositoryDirectoryPath = projectIsInRepository.Result;
-
 				Instances.GitHubOperator_Base.PushAllChanges(
 					repositoryDirectoryPath,
 					Instances.CommitMessages.ChangeProjectToNetStandard2_1.Value,
@@ -262,11 +264,12 @@ namespace R5T.S0043
 				});
 
 			// Push change to remote.
-			var projectIsInRepository = Instances.GitOperator.HasRepository(projectFilePath);
+			var projectIsInRepository = Instances.GitOperator.Has_Repository(
+				projectFilePath,
+				out var repositoryDirectoryPath);
+
 			if (pushChangesToRemote && projectIsInRepository)
 			{
-				var repositoryDirectoryPath = projectIsInRepository.Result;
-
 				Instances.GitHubOperator_Base.PushAllChanges(
 					repositoryDirectoryPath,
 					Instances.CommitMessages.ChangeProjectToNet6.Value,

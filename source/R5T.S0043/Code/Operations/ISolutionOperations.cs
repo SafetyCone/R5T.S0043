@@ -168,11 +168,12 @@ namespace R5T.S0043
 					solutionFile);
 
 				// Push change to remote.
-				var solutionIsInRepository = Instances.GitOperator.HasRepository(solutionFilePath);
+				var solutionIsInRepository = Instances.GitOperator.Has_Repository(
+					solutionFilePath,
+					out var repositoryDirectoryPath);
+
 				if(pushChangesToRemote && solutionIsInRepository)
                 {
-					var repositoryDirectoryPath = solutionIsInRepository.Result;
-
 					Instances.GitHubOperator_Base.PushAllChanges(
 						repositoryDirectoryPath,
 						Instances.CommitMessages.UpgradeSolutionFileToVS2022.Value,

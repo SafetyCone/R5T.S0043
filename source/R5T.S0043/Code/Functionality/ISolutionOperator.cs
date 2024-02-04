@@ -120,7 +120,7 @@ namespace R5T.S0043
 				{
 					logger.LogInformation("Generating solution file instance...");
 
-					solutionFile = Instances.SolutionFileGenerator.CreateNew(visualStudioVersion);
+					solutionFile = Instances.SolutionFileGenerator.New(visualStudioVersion);
 
 					logger.LogInformation("Generated solution file instance.");
 

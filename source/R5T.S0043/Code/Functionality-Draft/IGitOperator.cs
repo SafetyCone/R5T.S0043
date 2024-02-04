@@ -156,7 +156,7 @@ namespace R5T.S0043
 
             try
             {
-				var hasAnyUnpushedLocalChanges = this.HasUnpushedLocalChanges(repositoryDirectoryPath);
+				var hasAnyUnpushedLocalChanges = this.Has_UnpushedChanges(repositoryDirectoryPath);
 
 				result
 					.WithValue(hasAnyUnpushedLocalChanges)
@@ -180,7 +180,7 @@ namespace R5T.S0043
 
 			try
 			{
-				this.StageAllUnstagedPaths(repositoryDirectoryPath);
+				this.Stage_UnstagedPaths(repositoryDirectoryPath);
 
 				result.WithSuccess("Git success: staging all unstaged paths succeeded.");
 			}
