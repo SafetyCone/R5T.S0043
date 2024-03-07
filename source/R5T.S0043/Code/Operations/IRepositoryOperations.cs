@@ -74,7 +74,7 @@ namespace R5T.S0043
 
 			/// Create - Solution.
 			var unadjustedSolutionName = Instances.SolutionNameOperator.GetUnadjustedSolutionName_FromUnadjustedLibraryName(libraryDescriptors.UnadjustedName);
-			var solutionName = Instances.SolutionNameOperator.AdjustSolutionName_ForPrivacy(unadjustedSolutionName, isPrivate);
+			var solutionName = Instances.SolutionNameOperator.Adjust_Name_ForPrivacy(unadjustedSolutionName, isPrivate);
 
 			var solutionFilePath = Instances.SolutionOperator.Create_Solution_SourceDirectoryPath(
                 repositoryResult.SourceDirectoryPath,
@@ -316,7 +316,7 @@ namespace R5T.S0043
 			/// Create - Solution.
 			// Now create the solution and project.
 			var unadjustedSolutionName = Instances.SolutionNameOperator.GetUnadjustedSolutionName_FromUnadjustedLibraryName(unadjustedLibraryName);
-			var solutionName = Instances.SolutionNameOperator.AdjustSolutionName_ForPrivacy(unadjustedSolutionName, isPrivate);
+			var solutionName = Instances.SolutionNameOperator.Adjust_Name_ForPrivacy(unadjustedSolutionName, isPrivate);
 
 			var solutionFilePath = Instances.SolutionOperator.Create_Solution_SourceDirectoryPath(
                 repositoryResult.SourceDirectoryPath,

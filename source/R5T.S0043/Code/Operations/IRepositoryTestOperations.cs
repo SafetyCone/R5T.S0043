@@ -93,7 +93,7 @@ namespace R5T.S0043
 
 			// Now create the solution and project.
 			var unadjustedSolutionName = Instances.SolutionNameOperator.GetUnadjustedSolutionName_FromUnadjustedLibraryName(unadjustedLibraryName);
-			var solutionName = Instances.SolutionNameOperator.AdjustSolutionName_ForPrivacy(unadjustedSolutionName, isPrivate);
+			var solutionName = Instances.SolutionNameOperator.Adjust_Name_ForPrivacy(unadjustedSolutionName, isPrivate);
 
 			var solutionFilePath = Instances.SolutionOperator.Create_Solution_SourceDirectoryPath(
                 repositoryResult.SourceDirectoryPath,
@@ -244,7 +244,7 @@ namespace R5T.S0043
 			var unadjustedScriptSolutionName = Instances.SolutionNameOperator.GetUnadjustedSolutionName_FromUnadjustedLibraryName(unadjustedLibraryName);
 
 			// Adjust solution name for privacy. This is done so that a user within Visual Studio can see whether the repository is private with just a glance at the solution name.
-			var scriptSolutionName = Instances.SolutionNameOperator.AdjustSolutionName_ForPrivacy(unadjustedScriptSolutionName, isPrivate);
+			var scriptSolutionName = Instances.SolutionNameOperator.Adjust_Name_ForPrivacy(unadjustedScriptSolutionName, isPrivate);
 
 			var scriptSolutionFileName = Instances.FileNameOperator.GetSolutionFileName_FromSolutionName(scriptSolutionName);
 			var scriptSolutionFilePath = Instances.PathOperator.Get_FilePath(
