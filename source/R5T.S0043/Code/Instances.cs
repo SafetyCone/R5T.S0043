@@ -15,7 +15,7 @@ namespace R5T.S0043
         public static F0002.IEnumerationHelper EnumerationHelper => F0002.EnumerationHelper.Instance;
         public static F0002.IExecutablePathOperator ExecutablePathOperator => F0002.ExecutablePathOperator.Instance;
         public static F0000.IFileExtensionOperator FileExtensionOperator => F0000.FileExtensionOperator.Instance;
-        public static IFileExtensions FileExtensions => S0043.FileExtensions.Instance;
+        public static Z0072.Z002.IFileExtensions FileExtensions => Z0072.Z002.FileExtensions.Instance;
         public static IFileNames FileNames => S0043.FileNames.Instance;
         public static IFileNameOperator FileNameOperator => S0043.FileNameOperator.Instance;
         public static F0000.IFileNameOperator FileNameOperator_Base => F0000.FileNameOperator.Instance;

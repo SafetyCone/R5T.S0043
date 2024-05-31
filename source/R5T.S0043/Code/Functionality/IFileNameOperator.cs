@@ -18,7 +18,7 @@ namespace R5T.S0043
 		public string GetProjectFileName_FromProjectName(string projectName)
         {
 			var projectFileNameStem = this.GetProjectFileNameStem_FromProjectName(projectName);
-			var projectFileExtension = Instances.FileExtensions.CSharpProjectFile;
+			var projectFileExtension = Instances.FileExtensions.CSharp_ProjectFile;
 
 			var output = Instances.FileExtensionOperator.Get_FileName(projectFileNameStem, projectFileExtension);
 			return output;
@@ -33,7 +33,7 @@ namespace R5T.S0043
 		public string GetSolutionFileName_FromSolutionName(string solutionName)
         {
 			var solutionFileNameStem = this.GetSolutionFileNameStem_FromSolutionName(solutionName);
-			var solutionFileExtension = Instances.FileExtensions.SolutionFile;
+			var solutionFileExtension = Instances.FileExtensions.Solution_File;
 
 			var output = Instances.FileExtensionOperator.Get_FileName(solutionFileNameStem, solutionFileExtension);
 			return output;
